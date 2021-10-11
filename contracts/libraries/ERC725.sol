@@ -80,6 +80,5 @@ contract ERC725 is ERC165 {
     function changeKeysRequired(uint256 purpose, uint256 number) external;
     function getKeysRequired(uint256 purpose) public view returns(uint256);
     function execute(address _to, uint256 _value, bytes memory _data) public returns (uint256 executionId);
-    function approve(uint256 _id, bool _approve) public returns (bool success);
 }
 
