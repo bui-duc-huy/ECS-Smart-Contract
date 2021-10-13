@@ -1,0 +1,38 @@
+{
+	"compiler": {
+		"version": "0.5.4+commit.9549d8ff"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"author": "James Lockhart <james@n3tw0rk.co.uk>\r",
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {},
+			"notice": "Strings Library\r \r In summary this is a simple library of string functions which make simple \r string operations less tedious in solidity.\r \r Please be aware these functions can be quite gas heavy so use them only when\r necessary not to clog the blockchain with expensive transactions.\r \r"
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/libraries/String.sol": "Strings"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/libraries/String.sol": {
+			"keccak256": "0xbe4cc47012171f7a7aaab57be8d7725d66b87c9ae42ec8eac23a4857debecc91",
+			"urls": [
+				"bzzr://2a319bc844588fae761e53528d3460384eda4c70815603865bd78e7a38a965fa"
+			]
+		}
+	},
+	"version": 1
+}

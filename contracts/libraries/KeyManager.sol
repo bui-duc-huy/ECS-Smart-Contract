@@ -3,10 +3,10 @@ import "./Pausable.sol";
 import "./ERC725.sol";
 
 contract KeyManager is PausableI, ERC725 {
-	uint256 executionNonce;
-	uint256 internal constant OPERATION_CALL = 0;
+    uint256 executionNonce;
+    uint256 internal constant OPERATION_CALL = 0;
 
-	struct Execution {
+    struct Execution {
         address to;
         uint256 value;
         bytes data;
@@ -14,9 +14,8 @@ contract KeyManager is PausableI, ERC725 {
         bool executed;
     }
 
-	mapping (uint256 => Execution) public executions;
-
-	mapping (uint256 => address[]) public approved;
+    mapping (uint256 => Execution) public executions;
+    mapping (uint256 => address[]) public approved;
     /// @dev Add key data to the identity if key + purpose tuple doesn't already exist
     /// @param _key Key bytes to add
     /// @param _purpose Purpose to add
@@ -28,12 +27,15 @@ contract KeyManager is PausableI, ERC725 {
         uint256 _keyType
     )
         public
-        //onlyManagementOrSelf
         whenNotPaused
         returns (bool success)
     {
         if (allKeys.find(_key, _purpose)) {
             return false;
+        }
+
+        if (msg.sender != address(this)) {
+            require(keyHasPurpose(keccak256(abi.encode(msg.sender)), 1), "Sender does not have management key");
         }
         
         _addKey(_key, _purpose, _keyType);
@@ -42,22 +44,24 @@ contract KeyManager is PausableI, ERC725 {
 
     /// @dev Remove key data from the identity
     /// @param _key Key bytes to remove
-    /// @param _purpose Purpose to remove
+
     /// @return `true` if key was found and removed, `false` if it wasn't found
     function removeKey(
-        bytes32 _key,
-        uint256 _purpose
+        bytes32 _key
     )
         public
-        //onlyManagementOrSelf
         whenNotPaused
         returns (bool success)
     {
-        if (!allKeys.find(_key, _purpose)) {
-            return false;
+        if (msg.sender != address(this)) {
+            require(keyHasPurpose(keccak256(abi.encode(msg.sender)), 1), "Sender does not have management key");
         }
-        uint256 keyType = allKeys.remove(_key, _purpose);
-        emit KeyRemoved(_key, _purpose, keyType);
+        
+        KeyStore.Key memory k = allKeys.keyData[_key];
+        emit KeyRemoved(_key, k.purpose, k.keyType);
+        
+        allKeys.remove(_key);
+        
         return true;
     }
 
@@ -70,22 +74,22 @@ contract KeyManager is PausableI, ERC725 {
         uint256 _purpose,
         uint256 _keyType
     )
-        public
+        internal
     {
-        require(getKeysByPurpose(_purpose).length <= getKeysRequired(_purpose));
+
         allKeys.add(_key, _purpose, _keyType);
         emit KeyAdded(_key, _purpose, _keyType);
     }
 
-	function getKey(
+    function getKey(
         bytes32 _key
     )
         public
         view
-        returns(uint256[] memory purposes, uint256 keyType, bytes32 key)
+        returns(uint256 purpose, uint256 keyType, bytes32 key)
     {
         KeyStore.Key memory k = allKeys.keyData[_key];
-        purposes = k.purposes;
+        purpose = k.purpose;
         keyType = k.keyType;
         key = k.key;
     }
@@ -102,7 +106,8 @@ contract KeyManager is PausableI, ERC725 {
         view
         returns(bool exists)
     {
-        return allKeys.find(_key, purpose);
+        KeyStore.Key memory k = allKeys.keyData[_key];
+        return k.purpose <= purpose;
     }
 
     /// @dev Find all the keys held by this identity for a given purpose
@@ -116,45 +121,60 @@ contract KeyManager is PausableI, ERC725 {
         return allKeys.keysByPurpose[_purpose];
     }
 
-	function execute(
-        uint256 _operation,
-        address _to,
-        uint256 _value,
-        bytes calldata _data
-    ) public payable virtual override returns(bytes memory result) {
-        // emit event
-        emit Executed(_operation, _to, _value, _data);
 
-        uint256 txGas = gasleft() - 2500;
+    function approve(uint256 _id, bool _approve)
+        public
+        returns (bool success)
+    {
+        require(keyHasPurpose(keccak256(abi.encode(msg.sender)), 2), "Sender does not have action key");
 
-        // CALL
-        if (_operation == OPERATION_CALL) {
-           result = executeCall(_to, _value, _data, txGas);
+        emit Approved(_id, _approve);
+        bytes memory tmp;
 
-            // DELEGATECALL
-        } else if (_operation == OPERATION_DELEGATECALL) {
-            address currentOwner = owner();
-            result = executeDelegateCall(_to, _data, txGas);
-
-            require(owner() == currentOwner, "Delegate call is not allowed to modify the owner!");
-
-            // CREATE
-        } else if (_operation == OPERATION_CREATE) {
-            address contractAddress = performCreate(_value, _data);
-            result = abi.encodePacked(contractAddress);
-
-            // CREATE2
-        } else if (_operation == OPERATION_CREATE2) {
-            bytes32 salt = BytesLib.toBytes32(_data, _data.length - 32);
-            bytes memory data = BytesLib.slice(_data, 0, _data.length - 32);
-
-            address contractAddress = Create2.deploy(_value, salt, data);
-            result = abi.encodePacked(contractAddress);
-
-            emit ContractCreated(contractAddress);
-    
+        if (_approve == true) {
+            executions[_id].approved = true;
+            (success, tmp) = executions[_id].to.call(executions[_id].data);
+            if (success) {
+                executions[_id].executed = true;
+                emit Executed(
+                    _id,
+                    executions[_id].to,
+                    executions[_id].value,
+                    executions[_id].data
+                );
+                return true;
+            } else {
+                emit ExecutionFailed(
+                    _id,
+                    executions[_id].to,
+                    executions[_id].value,
+                    executions[_id].data
+                );
+                return false;
+            }
         } else {
-            revert("Wrong operation type");
+            executions[_id].approved = false;
         }
+        return true;
+    }
+
+
+    function execute(address _to, uint256 _value, bytes memory _data)
+        public
+        returns (uint256 executionId)
+    {
+        require(!executions[executionNonce].executed, "Already executed");
+        executions[executionNonce].to = _to;
+        executions[executionNonce].value = _value;
+        executions[executionNonce].data = _data;
+
+        emit ExecutionRequested(executionNonce, _to, _value, _data);
+
+        if (keyHasPurpose(keccak256(abi.encode(msg.sender)), 1) || keyHasPurpose(keccak256(abi.encode(msg.sender)), 2)) {
+            approve(executionNonce, true);
+        }
+
+        executionNonce++;
+        return executionNonce-1;
     }
 }

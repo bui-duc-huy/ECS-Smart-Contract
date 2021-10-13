@@ -1,0 +1,384 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"görli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"addKey(bytes32,uint256,uint256)": "1d381240",
+			"execute(address,uint256,bytes)": "b61d27f6",
+			"getKey(bytes32)": "12aaac70",
+			"getKeysByPurpose(uint256)": "9010f726",
+			"keyHasPurpose(bytes32,uint256)": "d202158d",
+			"removeKey(bytes32)": "862642f5",
+			"supportsInterface(bytes4)": "01ffc9a7"
+		}
+	},
+	"abi": [
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "interfaceId",
+					"type": "bytes4"
+				}
+			],
+			"name": "supportsInterface",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_key",
+					"type": "bytes32"
+				}
+			],
+			"name": "getKey",
+			"outputs": [
+				{
+					"name": "purpose",
+					"type": "uint256"
+				},
+				{
+					"name": "keyType",
+					"type": "uint256"
+				},
+				{
+					"name": "key",
+					"type": "bytes32"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_key",
+					"type": "bytes32"
+				},
+				{
+					"name": "_purpose",
+					"type": "uint256"
+				},
+				{
+					"name": "_keyType",
+					"type": "uint256"
+				}
+			],
+			"name": "addKey",
+			"outputs": [
+				{
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_key",
+					"type": "bytes32"
+				}
+			],
+			"name": "removeKey",
+			"outputs": [
+				{
+					"name": "success",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_purpose",
+					"type": "uint256"
+				}
+			],
+			"name": "getKeysByPurpose",
+			"outputs": [
+				{
+					"name": "keys",
+					"type": "bytes32[]"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_to",
+					"type": "address"
+				},
+				{
+					"name": "_value",
+					"type": "uint256"
+				},
+				{
+					"name": "_data",
+					"type": "bytes"
+				}
+			],
+			"name": "execute",
+			"outputs": [
+				{
+					"name": "executionId",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_key",
+					"type": "bytes32"
+				},
+				{
+					"name": "purpose",
+					"type": "uint256"
+				}
+			],
+			"name": "keyHasPurpose",
+			"outputs": [
+				{
+					"name": "exists",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "key",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"name": "purpose",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"name": "keyType",
+					"type": "uint256"
+				}
+			],
+			"name": "KeyAdded",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "key",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"name": "purpose",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"name": "keyType",
+					"type": "uint256"
+				}
+			],
+			"name": "KeyRemoved",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "executionId",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "ExecutionRequested",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "executionId",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "Executed",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "executionId",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"name": "approved",
+					"type": "bool"
+				}
+			],
+			"name": "Approved",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "purpose",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"name": "number",
+					"type": "uint256"
+				}
+			],
+			"name": "KeysRequiredChanged",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "executionId",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "ExecutionFailed",
+			"type": "event"
+		}
+	]
+}

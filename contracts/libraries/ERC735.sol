@@ -37,13 +37,21 @@ contract ERC735 is ERC165 {
     //uint256 public constant REGISTRY_TOPIC = 3;
     //uint256 public constant PROFILE_TOPIC = 4; //  social media profiles, blogs, etc.
     //uint256 public constant LABEL_TOPIC = 5; //  real name, business name, nick name, brand name, alias, etc.
+    struct Claim {
+        uint256 claimType;
+        uint256 scheme;
+        address issuer; // msg.sender
+        bytes signature; // this.address + claimType + data
+        bytes data;
+        string uri;
+    }
 
     // Scheme
-    uint256 public constant ECDSA_SCHEME = 1;
+    uint256 internal constant ECDSA_SCHEME = 1;
     // https://medium.com/@alexberegszaszi/lets-bring-the-70s-to-ethereum-48daa16a4b51
-    uint256 public constant RSA_SCHEME = 2;
+    uint256 internal constant RSA_SCHEME = 2;
     // 3 is contract verification, where the data will be call data, and the issuer a contract address to call
-    uint256 public constant CONTRACT_SCHEME = 3;
+    uint256 internal constant CONTRACT_SCHEME = 3;
 
     // Events
     event ClaimRequested(uint256 indexed claimRequestId, uint256 indexed topic, uint256 scheme, address indexed issuer, bytes signature, bytes data, string uri);
@@ -52,8 +60,8 @@ contract ERC735 is ERC165 {
     event ClaimChanged(bytes32 indexed claimId, uint256 indexed topic, uint256 scheme, address indexed issuer, bytes signature, bytes data, string uri);
 
     // Functions
-    function getClaim(bytes32 _claimId) public view returns(uint256 topic, uint256 scheme, address issuer, bytes memory signature, bytes memory data, string memory uri);
-    function getClaimIdsByType(uint256 _topic) public view returns(bytes32[] memory claimIds);
-    function addClaim(uint256 _topic, uint256 _scheme, address issuer, bytes memory _signature, bytes memory _data, string memory _uri) public returns (uint256 claimRequestId);
+    function getClaim(bytes32 _claimId) public view returns(uint256 claimType, uint256 scheme, address issuer, bytes memory signature, bytes memory data, string memory uri);
+    function getClaimIdsByType(uint256 _claimType) public view returns(bytes32[] memory claimIds);
+    function addClaim(uint256 _claimType, uint256 _scheme, address issuer, bytes memory _signature, bytes memory _data, string memory _uri) public returns (bytes32 claimRequestId);
     function removeClaim(bytes32 _claimId) public returns (bool success);
 }

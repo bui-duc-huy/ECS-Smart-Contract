@@ -26,7 +26,7 @@ interface IERC165 {
 
 // File: contracts\introspection\ERC165.sol
 
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.4;
 
 
 /**

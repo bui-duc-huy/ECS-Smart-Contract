@@ -1,0 +1,82 @@
+{
+	"compiler": {
+		"version": "0.5.4+commit.9549d8ff"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "addrToKey",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "numKeys",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Mircea Pasoi",
+			"details": "Key data is stored using KeyStore library",
+			"methods": {
+				"addrToKey(address)": {
+					"details": "Convert an Ethereum address (20 bytes) to an ERC725 key (32 bytes)"
+				},
+				"numKeys()": {
+					"details": "Number of keys managed by the contract",
+					"return": "Unsigned integer number of keys"
+				}
+			},
+			"title": "KeyBase"
+		},
+		"userdoc": {
+			"methods": {},
+			"notice": "Abstract contract for ERC725 implementation"
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/libraries/KeyBase.sol": "KeyBase"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/libraries/KeyBase.sol": {
+			"keccak256": "0x448047488a1c968805a336bea42a1a9faedbd02d1a25d7ac331d1f2dc704c699",
+			"urls": [
+				"bzzr://458dd2a262330a01fd735ca1c9412e74a6c9acd8070c3e51ff39827513125373"
+			]
+		}
+	},
+	"version": 1
+}
