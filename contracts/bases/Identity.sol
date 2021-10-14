@@ -27,13 +27,11 @@ contract Identity is KeyManager, ClaimManager {
         uint256 _tokenId,
         address _identity,
         bytes memory _data
-    ) 
+    )
         public
         returns (bool success) 
     {
         // TODO: function using for issue certification for student
         require(keyHasPurpose(keccak256(abi.encode(msg.sender)), 2), "Sender does not have action key");
     }
-
-
 }
