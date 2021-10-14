@@ -950,9 +950,6 @@ contract IERC721Metadata is IERC721 {
 
 pragma solidity ^0.5.4;
 
-
-
-
 contract ERC721Metadata is ERC165, ERC721, IERC721Metadata {
     // Token name
     string private _name;
