@@ -1,9 +1,32 @@
 pragma solidity ^0.5.4;
 import {PartialMerkleTree} from "../libraries/Tree.sol";
+import "../libraries/ECDSA.sol";
 
 contract PartialMerkleTreeImplementation {
     using PartialMerkleTree for PartialMerkleTree.Tree;
     PartialMerkleTree.Tree tree;
+
+    struct Event {
+        string action;
+        string from;
+        string to;
+        string description;
+        string date;
+        address creator;
+        bytes signature;
+    }
+
+    event DataInserted (
+        string Action,
+        string From,
+        string To,
+        string Description,
+        string Date,
+        address Creator,
+        bytes Signature
+    );
+
+    mapping (bytes32 => Event) private _events;
 
     constructor (bytes32 initialRoot) public {
         _initialize(initialRoot);
@@ -13,12 +36,37 @@ contract PartialMerkleTreeImplementation {
         tree.initialize(initialRoot);
     }
 
-    function insert(bytes memory key, bytes memory value) public {
-        tree.insert(key, value);
+    function _setEvents(bytes32 _key, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _creator, bytes memory _signature) private {
+        _events[_key].action = _action;
+        _events[_key].from = _from;
+        _events[_key].to = _to;
+        _events[_key].description = _description;
+        _events[_key].date = _date;
+        _events[_key].creator = _creator;
+        _events[_key].signature = _signature;
     }
 
-    function commitBranch(bytes memory key, bytes memory value, uint branchMask, bytes32[] memory siblings) public {
-        return tree.commitBranch(key, value, branchMask, siblings);
+    function getEvent(bytes32 _key) public returns(string memory action, string memory from , string memory to , string memory description, string memory date, address creator, bytes memory signature) {
+        return (
+            _events[_key].action,
+            _events[_key].from,
+            _events[_key].to,
+            _events[_key].description,
+            _events[_key].date,
+            _events[_key].creator,
+            _events[_key].signature
+        );
+    }
+
+    function insert(string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public {
+        bytes32 key = keccak256(abi.encode(_action, _from, _to, _description, _date));
+        bytes32 message = ECDSA.toEthSignedMessageHash(key);
+        require(ECDSA.recover(message, _signature) == tx.origin, "Signature invalid");
+
+        _setEvents(key, _action, _from, _to, _description, _date, tx.origin, _signature);
+        tree.insert(abi.encodePacked(key), _signature);
+
+        emit DataInserted(_action, _from, _to, _description, _date, tx.origin, _signature);
     }
 
     function commitBranchOfNonInclusion(bytes memory key, bytes32 potentialSiblingLabel, bytes32 potentialSiblingValue, uint branchMask, bytes32[] memory siblings) public {

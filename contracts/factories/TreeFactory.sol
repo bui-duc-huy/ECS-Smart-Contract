@@ -1,9 +1,8 @@
 pragma solidity ^0.5.4;
 import "../bases/PartialMerkleTreeImplementation.sol";
+import "../interfaces/factories/ITreeFactory.sol";
 
-contract TreeFactory {
-    event TreeCreated(address NewMerkleTree, address Creator);
-
+contract TreeFactory is ITreeFactory {
     function _getBytecode(bytes32 _initialRoot) private pure returns (bytes memory) {
         bytes memory bytecode = type(PartialMerkleTreeImplementation).creationCode;
 
@@ -26,7 +25,7 @@ contract TreeFactory {
 
         address tree = _deploy(bytecode, _salt);
 
-        emit TreeCreated(tree, tx.origin);
+        emit TreeCreated(_salt, tree);
         return tree;
     }
 

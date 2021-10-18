@@ -1,19 +1,16 @@
 pragma solidity ^0.5.4;
+pragma experimental ABIEncoderV2;
 import "../libraries/ClaimManager.sol";
 import "../libraries/KeyManager.sol";
 import "../libraries/Encoder.sol";
 
 contract Identity is KeyManager, ClaimManager {
-    string public globalIdentifierNumber;
-    
-    constructor(string memory _globalIdentifierNumber, bytes32[] memory _keys, uint256[] memory _purposes) public {
-        globalIdentifierNumber = _globalIdentifierNumber;
-        
-        addKeys(_keys, _purposes, ECDSA_TYPE);
+    constructor(address _owner, bytes32[] memory _keys, uint256[] memory _purposes) public {
+        addKeys(_owner, _keys, _purposes, ECDSA_TYPE);
     }
 
-    function addKeys(bytes32[] memory _keys, uint256[] memory _purposes, uint256 _keyType) public returns (bool success) {
-        _addKey(addrToKey(tx.origin), 1, _keyType);
+    function addKeys(address _owner, bytes32[] memory _keys, uint256[] memory _purposes, uint256 _keyType) public returns (bool success) {
+        _addKey(addrToKey(_owner), 1, _keyType);
         for (uint i = 0; i < _keys.length; i++) {
             _addKey(_keys[i], _purposes[i], _keyType);
         }
@@ -21,17 +18,9 @@ contract Identity is KeyManager, ClaimManager {
         return true;
     }
 
-    function addClaimAndTransfer(
-        address _tokenAddress, 
-        address _to, 
-        uint256 _tokenId,
-        address _identity,
-        bytes memory _data
-    )
-        public
-        returns (bool success) 
-    {
-        // TODO: function using for issue certification for student
-        require(keyHasPurpose(keccak256(abi.encode(msg.sender)), 2), "Sender does not have action key");
+    function executeMany(address[] memory _tos, uint256[] memory _values, bytes[] memory _datas) public {
+        for (uint i = 0; i < _tos.length; i++) {
+            execute(_tos[i], _values[i], _datas[i]);
+        }
     }
 }

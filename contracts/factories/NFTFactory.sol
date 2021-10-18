@@ -1,7 +1,8 @@
 pragma solidity ^0.5.4;
 import "../bases/NFT.sol";
+import "../interfaces/factories/INFTFactory.sol";
 
-contract NFTFactory {
+contract NFTFactory is INFTFactory{
     event NFTCreated(address NewERC721Address, address Creator);
 
     function _getBytecode(string memory _name, string memory _symbol) private pure returns (bytes memory) {
