@@ -3,10 +3,21 @@ pragma experimental ABIEncoderV2;
 import "../libraries/ClaimManager.sol";
 import "../libraries/KeyManager.sol";
 import "../libraries/Encoder.sol";
+import "../interfaces/bases/IIdentity.sol";
 
-contract Identity is KeyManager, ClaimManager {
+contract Identity is KeyManager, ClaimManager, IIdentity {
+    mapping (address => string) private _identityNumbers;
     constructor(address _owner, bytes32[] memory _keys, uint256[] memory _purposes) public {
         addKeys(_owner, _keys, _purposes, ECDSA_TYPE);
+    }
+
+    function setIdentityNumber(address _trustedIdentity, string memory _number) public {
+        _identityNumbers[_trustedIdentity] = _number;
+        emit SetIdentityNumber(_trustedIdentity, _number);
+    }
+
+    function getIdentityNumber(address _trustedIdentity) view public returns(string memory) {
+        return _identityNumbers[_trustedIdentity];
     }
 
     function addKeys(address _owner, bytes32[] memory _keys, uint256[] memory _purposes, uint256 _keyType) public returns (bool success) {

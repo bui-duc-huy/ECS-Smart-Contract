@@ -1,11 +1,8 @@
 pragma solidity ^0.5.4;
 import "../libraries/ERC721.sol";
+import "../interfaces/bases/INFT.sol";
 
-contract NFT is ERC721, ERC721Enumerable, ERC721Metadata {
-    event NewERC721Info(string Name, string Symbol);
-    event NewERC721TokenInfo(string Name, string Symbol, uint256 Id, string Uri, address Creator, address TreeData);
-    event RemoveSmallFile(uint256 TokenId, address Owner, address RemovedBy);
-
+contract NFT is ERC721, ERC721Enumerable, ERC721Metadata, INFT {
     mapping(uint256 => address) private _treeOfToken;
 
     constructor (string memory _name, string memory _symbol) public ERC721Metadata(_name, _symbol) {
@@ -16,7 +13,7 @@ contract NFT is ERC721, ERC721Enumerable, ERC721Metadata {
         _treeOfToken[_tokenId] = _tree;
     }
 
-    function createNewERC721Token(string memory _uri, address _tree) public returns(uint256) {
+    function createNewToken(string memory _uri, address _tree) public returns(uint256) {
         uint256 id = totalSupply();
         super._mint(tx.origin, id);
         super._setTokenURI(id, _uri);
@@ -28,6 +25,10 @@ contract NFT is ERC721, ERC721Enumerable, ERC721Metadata {
 
         emit NewERC721TokenInfo(_name, _symbol, id, _uri, tx.origin, _tree);
         return id;
+    }
+
+    function getTreeOfToken(uint256 _tokenId) public returns(address) {
+        return _treeOfToken[_tokenId];
     }
     
     function removeAsset(uint256 tokenId) public {

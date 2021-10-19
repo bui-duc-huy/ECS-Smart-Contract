@@ -1,6 +1,7 @@
 pragma solidity ^0.5.4;
 import "../interfaces/factories/IIdentityFactory.sol";
 import "../storage/EternalStorage.sol";
+import "../interfaces/bases/IIdentity.sol";
 
 contract UserController {
     EternalStorage private _eternalStorage;
@@ -44,6 +45,8 @@ contract UserController {
     }
 
     function registerIdentity(
+        address _trustedIdentity,
+        string memory _number,
         bytes32[] memory _initialKeys,
         bytes32[] memory _keys,
         uint256[] memory _purposes,
@@ -57,7 +60,9 @@ contract UserController {
         IIdentityFactory identityFactory = IIdentityFactory(_eternalStorage.getAddressValue(factoryKey));
 
         address newIdentity = identityFactory.deploy(_owner, _keys, _purposes, _salt);  
+        IIdentity identity = IIdentity(newIdentity);
 
+        identity.setIdentityNumber(_trustedIdentity, _number);
         for (uint i = 0; i < _initialKeys.length; i++) {
             _mapIdentity(_initialKeys[i], newIdentity);
         }

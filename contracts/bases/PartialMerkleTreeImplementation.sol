@@ -1,8 +1,9 @@
 pragma solidity ^0.5.4;
 import {PartialMerkleTree} from "../libraries/Tree.sol";
 import "../libraries/ECDSA.sol";
+import "../interfaces/bases/IPartialMerkleTreeImplementation.sol";
 
-contract PartialMerkleTreeImplementation {
+contract PartialMerkleTreeImplementation is IPartialMerkleTreeImplementation {
     using PartialMerkleTree for PartialMerkleTree.Tree;
     PartialMerkleTree.Tree tree;
 
@@ -15,16 +16,6 @@ contract PartialMerkleTreeImplementation {
         address creator;
         bytes signature;
     }
-
-    event DataInserted (
-        string Action,
-        string From,
-        string To,
-        string Description,
-        string Date,
-        address Creator,
-        bytes Signature
-    );
 
     mapping (bytes32 => Event) private _events;
 
