@@ -9,14 +9,10 @@ contract UserController {
     string private _TREE_FACTORY = "TREE-FACTORY";
     string private _IDENTITY_FACTORY = "IDENTITY-FACTORY";
 
-    string private _ADDRESS_TO_IDENTITY = "ADDRESS-TO-IDENTITY";
     string private _KEY_TO_IDENTITY = "KEY-IDENTITY";
 
     event MapIdentity(bytes32 Key, address Identity);
     event IdentityCreated(address Identity, address Owner, address Creator);
-
-    mapping(bytes32 => address) private _identities;
-
 
     constructor (address _eternalStorageAddress) public {
         _eternalStorage = EternalStorage(_eternalStorageAddress);
@@ -27,21 +23,16 @@ contract UserController {
         _eternalStorage.set(key, _identity);
     }
 
-    function _mapIdentity(address _owner, address _identity) private {
-        bytes32 key = keccak256(abi.encode(_owner, _ADDRESS_TO_IDENTITY));
-        _eternalStorage.set(key, _identity);
-    }
-
-    function _getUserIdentity(address _owner) private view returns (address) {
-        bytes32 key = keccak256(abi.encode(_owner, _ADDRESS_TO_IDENTITY));
-        address identity = _eternalStorage.getAddressValue(key);
-        return identity;
-    }
-
     function _getUserIdentity(bytes32 _key) private view returns (address) {
         bytes32 key = keccak256(abi.encode(_key, _KEY_TO_IDENTITY));
         address identity = _eternalStorage.getAddressValue(key);
         return identity;
+    }
+
+    function _issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) private return(bytes32) {
+        IIdentity trustedIdentity = IIdentity(_trustedIdentity);
+
+        trustedIdentity.execute(_claimHolder, 0, abi.encodePackage(_claimType, _scheme, _issuer, _signature, _data, _uri);
     }
 
     function registerIdentity(
@@ -67,7 +58,7 @@ contract UserController {
             _mapIdentity(_initialKeys[i], newIdentity);
         }
 
-        _mapIdentity(tx.origin, newIdentity);
+        _mapIdentity(keccak256(abi.encode(tx.origin), newIdentity);
     }
 
     function mapIdentity(bytes32 _key, address _identity) public {
@@ -75,11 +66,11 @@ contract UserController {
         emit MapIdentity(_key, _identity);
     }
 
-    function getUserIdentity(address _owner) public view returns(address identity) {
-        identity = _getUserIdentity(_owner);
-    }
-
     function getUserIdentity(bytes32 _key) public view returns(address identity) {
         identity = _getUserIdentity(_key);
+    }
+
+    function issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) public {
+        _issueClaim(_trustedIdentity, _claimHolder, _claimType, _schema, _issuer, _signature, _data, _uri);
     }
 }

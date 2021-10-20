@@ -8,7 +8,8 @@ import "../interfaces/bases/IIdentity.sol";
 contract Identity is KeyManager, ClaimManager, IIdentity {
     mapping (address => string) private _identityNumbers;
     constructor(address _owner, bytes32[] memory _keys, uint256[] memory _purposes) public {
-        addKeys(_owner, _keys, _purposes, ECDSA_TYPE);
+        _addKey(addrToKey(_owner), 1, ECDSA_TYPE);
+        addKeys(_keys, _purposes, ECDSA_TYPE);
     }
 
     function setIdentityNumber(address _trustedIdentity, string memory _number) public {
@@ -21,7 +22,6 @@ contract Identity is KeyManager, ClaimManager, IIdentity {
     }
 
     function addKeys(address _owner, bytes32[] memory _keys, uint256[] memory _purposes, uint256 _keyType) public returns (bool success) {
-        _addKey(addrToKey(_owner), 1, _keyType);
         for (uint i = 0; i < _keys.length; i++) {
             _addKey(_keys[i], _purposes[i], _keyType);
         }

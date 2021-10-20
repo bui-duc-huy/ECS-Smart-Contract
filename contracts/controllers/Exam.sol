@@ -22,8 +22,6 @@ contract ExamController {
     string private _KEY_TO_EXAM_ITEM = "KEY-TO-EXAM-ITEM";
     string private _KEY_TO_TOKEN_ID = "KEY-TO-TOKEN-ID";
 
-    mapping (bytes32 => address) private _contest;
-
     event ExamCreated (
         string Subject,
         string Class,
@@ -33,7 +31,8 @@ contract ExamController {
         address NFTAddress
     );
 
-    constructor (address _nftFactoryAddress) public {
+    constructor (address _eternalStorageAddress) public {
+        _eternalStorage = EternalStorage(_eternalStorageAddress);
     }
 
     function _setExamAddress(bytes32 _key, address _exam) private {
@@ -41,12 +40,8 @@ contract ExamController {
         _eternalStorage.set(hashKey, _exam);
     }
 
-    function _getExamAddress(bytes32 _key) view private returns(address) {
-        bytes32 hashKey = keccak256(abi.encode(_key, _KEY_TO_EXAM));
-        return _eternalStorage.getAddressValue(hashKey);
-    }
 
-    function _createExam(string memory _subject, string memory _class, string memory _time, string memory _description, uint256 _salt) private {
+    function _createExam(string memory _subject, string memory _class, string memory _time, string memory _description, uint256 _salt) private returns(address) {
         bytes32 factoryKey = keccak256(abi.encode(_NFT_FACTORY));
         INFTFactory nft = INFTFactory(_eternalStorage.getAddressValue(factoryKey));
         address newNft = nft.deploy(_subject, _subject.concat("/").concat(_time), _salt);
@@ -55,6 +50,8 @@ contract ExamController {
         _setExamAddress(examKey, newNft);
 
         emit ExamCreated(_subject, _class, _time, _description, tx.origin, newNft);
+        
+        return newNft;
     }
 
     function _createNft(address _examNft, address _treeAddress, string memory _uri) private returns(uint256) {
@@ -77,8 +74,17 @@ contract ExamController {
         tree.insert(_action, _from, _to, _description, _date, _signature);
     }
 
-    function createExam(string memory _subject, string memory _class, string memory _time, string memory _description, uint256 _salt) public {
+    function _issueClaim(address _trustedIdentity, address _identityClaim, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) private return(bytes32) {
+
+    }
+
+    function createExam(string memory _subject, string memory _class, string memory _time, string memory _description, uint256 _salt) public returns(address) {
         _createExam(_subject, _class, _time, _description, _salt);
+    }
+
+    function getExamAddress(bytes32 _key) view public returns(address) {
+        bytes32 hashKey = keccak256(abi.encode(_key, _KEY_TO_EXAM));
+        return _eternalStorage.getAddressValue(hashKey);
     }
 
     function getExamAddress(string memory _subject, string memory _class, string memory _time, string memory _description) public returns(address) {
