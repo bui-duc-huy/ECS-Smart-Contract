@@ -21,7 +21,7 @@ contract Identity is KeyManager, ClaimManager, IIdentity {
         return _identityNumbers[_trustedIdentity];
     }
 
-    function addKeys(address _owner, bytes32[] memory _keys, uint256[] memory _purposes, uint256 _keyType) public returns (bool success) {
+    function addKeys(bytes32[] memory _keys, uint256[] memory _purposes, uint256 _keyType) public returns (bool success) {
         for (uint i = 0; i < _keys.length; i++) {
             _addKey(_keys[i], _purposes[i], _keyType);
         }

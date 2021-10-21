@@ -74,10 +74,6 @@ contract ExamController {
         tree.insert(_action, _from, _to, _description, _date, _signature);
     }
 
-    function _issueClaim(address _trustedIdentity, address _identityClaim, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) private return(bytes32) {
-
-    }
-
     function createExam(string memory _subject, string memory _class, string memory _time, string memory _description, uint256 _salt) public returns(address) {
         _createExam(_subject, _class, _time, _description, _salt);
     }
@@ -89,7 +85,7 @@ contract ExamController {
 
     function getExamAddress(string memory _subject, string memory _class, string memory _time, string memory _description) public returns(address) {
         bytes32 key = keccak256(abi.encode(_subject, _class, _time, _description));
-        return _getExamAddress(key);
+        return getExamAddress(key);
     }
 
     function getExamTree(address _examNft, uint256 _tokenId) public returns(address) {
@@ -104,7 +100,7 @@ contract ExamController {
         _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signature);
     }
 
-    function insertEvent(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
+    function insertEventToExam(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
         INFT examNft = INFT(_examNft);
         address treeAddress = examNft.getTreeOfToken(_tokenId);
 

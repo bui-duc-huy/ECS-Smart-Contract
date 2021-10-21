@@ -29,10 +29,10 @@ contract UserController {
         return identity;
     }
 
-    function _issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) private return(bytes32) {
+    function _issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) private returns(bytes32) {
         IIdentity trustedIdentity = IIdentity(_trustedIdentity);
 
-        trustedIdentity.execute(_claimHolder, 0, abi.encodePackage(_claimType, _scheme, _issuer, _signature, _data, _uri);
+        trustedIdentity.execute(_claimHolder, 0, abi.encodePacked(_claimType, _schema, _issuer, _signature, _data, _uri));
     }
 
     function registerIdentity(
@@ -58,7 +58,7 @@ contract UserController {
             _mapIdentity(_initialKeys[i], newIdentity);
         }
 
-        _mapIdentity(keccak256(abi.encode(tx.origin), newIdentity);
+        _mapIdentity(keccak256(abi.encode(tx.origin)), newIdentity);
     }
 
     function mapIdentity(bytes32 _key, address _identity) public {
