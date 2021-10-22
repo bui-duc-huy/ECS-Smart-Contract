@@ -1,11 +1,12 @@
 pragma solidity ^0.5.4;
-import "../interfaces/factories/INFTFactory.sol";
-import "../interfaces/bases/IPartialMerkleTreeImplementation.sol";
-import "../interfaces/factories/ITreeFactory.sol";
-import "../storage/EternalStorage.sol";
-import "../interfaces/bases/INFT.sol";
+import "./interfaces/factories/INFTFactory.sol";
+import "./interfaces/bases/IPartialMerkleTreeImplementation.sol";
+import "./interfaces/factories/ITreeFactory.sol";
+import "./storage/EternalStorage.sol";
+import "./interfaces/bases/INFT.sol";
+import "./interfaces/controllers/ICert.sol";
 
-contract CertController {
+contract CertController is ICertController {
     EternalStorage private _eternalStorage;
 
     string private _NFT_FACTORY = "NFT-FACTORY";
@@ -48,7 +49,7 @@ contract CertController {
         INFT nft = INFT(_certCollection);
 
         address tree = _createTree(_salt);
-        uint256 tokenId = nft.createNewToken(_uri, tree);
+        uint256 tokenId = nft.createNewToken(_uri, _user, tree);
 
         return tokenId;
     }
@@ -60,15 +61,19 @@ contract CertController {
 
     function createCertCollection(bytes32 _key, string memory _certName, string memory _certSymbol, uint256 _salt) public returns(address) {
         address newNft = _createCertCollection(_key, _certName, _certSymbol, _salt);
+
+        emit CertCollectionCreated(_key, _certName, _certSymbol, tx.origin, newNft);
         return newNft;
     }
 
     function createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) public returns(uint256) {
         uint256 tokenId = _createCert(_certCollection, _user, _uri, _salt);
+
+        emit CertIssued(_certCollection, tx.origin, _user);
         return tokenId;
     }
 
-    function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
+    function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public {
         INFT examNft = INFT(_examNft);
         address treeAddress = examNft.getTreeOfToken(_tokenId);
 
