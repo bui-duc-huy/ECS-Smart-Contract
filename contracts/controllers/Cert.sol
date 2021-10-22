@@ -1,5 +1,7 @@
 pragma solidity ^0.5.4;
 import "../interfaces/factories/INFTFactory.sol";
+import "../interfaces/bases/IPartialMerkleTreeImplementation.sol";
+import "../interfaces/factories/ITreeFactory.sol";
 import "../storage/EternalStorage.sol";
 import "../interfaces/bases/INFT.sol";
 
@@ -42,7 +44,7 @@ contract CertController {
         return newNft;
     }
 
-    function _createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) private return (uint256) {
+    function _createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) private returns (uint256) {
         INFT nft = INFT(_certCollection);
 
         address tree = _createTree(_salt);
@@ -51,12 +53,18 @@ contract CertController {
         return tokenId;
     }
 
-    function createCertCollection(bytes _key, string memory _certName, string memory _certSymbol, uint256 _salt) public returns(newNft) {
-        newNft = _createCertCollection(_key, _certName, _certSymbol, _salt);
+    function _insertEvent(address _tree, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
+        IPartialMerkleTreeImplementation tree = IPartialMerkleTreeImplementation(_tree);
+        tree.insert(_action, _from, _to, _description, _date, _signature);
+    }
+
+    function createCertCollection(bytes32 _key, string memory _certName, string memory _certSymbol, uint256 _salt) public returns(address) {
+        address newNft = _createCertCollection(_key, _certName, _certSymbol, _salt);
+        return newNft;
     }
 
     function createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) public returns(uint256) {
-        uint256 tokenId = _createCert(_key, _user, _uri, _salt);
+        uint256 tokenId = _createCert(_certCollection, _user, _uri, _salt);
         return tokenId;
     }
 

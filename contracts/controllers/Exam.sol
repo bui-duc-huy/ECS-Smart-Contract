@@ -5,8 +5,9 @@ import "../libraries/String.sol";
 import "../interfaces/bases/INFT.sol";
 import "../interfaces/factories/ITreeFactory.sol";
 import "../interfaces/bases/IPartialMerkleTreeImplementation.sol";
+import "../libraries/Ownable.sol";
 
-contract ExamController { 
+contract ExamController is Ownable { 
     using Strings for string;
 
     EternalStorage private _eternalStorage;

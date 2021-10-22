@@ -2,8 +2,9 @@ pragma solidity ^0.5.4;
 import "../interfaces/factories/IIdentityFactory.sol";
 import "../storage/EternalStorage.sol";
 import "../interfaces/bases/IIdentity.sol";
+import "../libraries/Ownable.sol";
 
-contract UserController {
+contract UserController is Ownable {
     EternalStorage private _eternalStorage;
     string private _NFT_FACTORY = "NFT-FACTORY";
     string private _TREE_FACTORY = "TREE-FACTORY";
@@ -11,8 +12,17 @@ contract UserController {
 
     string private _KEY_TO_IDENTITY = "KEY-IDENTITY";
 
+    address private _entry;
+
     event MapIdentity(bytes32 Key, address Identity);
     event IdentityCreated(address Identity, address Owner, address Creator);
+
+    modifier onlyFromEntry () {
+        if (msg.sender != _entry) {
+            revert();
+        }
+        _;
+    }
 
     constructor (address _eternalStorageAddress) public {
         _eternalStorage = EternalStorage(_eternalStorageAddress);
@@ -30,8 +40,9 @@ contract UserController {
     }
 
     function _issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) private {
-        bytes memory encodeParamsExecute = abi.encodeWithSelector(IIdentity(_trustedIdentity).execute.selector, _claimHolder, 0, abi.encodePackage(_claimType, _schema, _issuer, _signature, _data, _uri));
-        bytes memory result = _trustedIdentity.functionStaticCall(encodeParamsExecute);
+        IIdentity trustedIdentity = IIdentity(_trustedIdentity);
+
+        trustedIdentity.execute(_claimHolder, 0, abi.encodePacked(_claimType, _schema, _issuer, _signature, _data, _uri)); 
     }
 
     function registerIdentity(
@@ -67,6 +78,14 @@ contract UserController {
 
     function getUserIdentity(bytes32 _key) public view returns(address identity) {
         identity = _getUserIdentity(_key);
+    }
+
+    function setEntry(address _newEntry) public onlyOwner {
+        _entry = _newEntry;
+    }
+
+    function getEntry() public view returns(address) {
+        return _entry;
     }
 
     function issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) public {
