@@ -42,9 +42,8 @@ contract CertController {
         return newNft;
     }
 
-    function _createCert(bytes32 _key, address _user, string memory _uri, uint256 _salt) private return (uint256) {
-        address nftAddress = _getCertCollection(_key);
-        INFT nft = INFT(nftAddress);
+    function _createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) private return (uint256) {
+        INFT nft = INFT(_certCollection);
 
         address tree = _createTree(_salt);
         uint256 tokenId = nft.createNewToken(_uri, tree);
@@ -56,7 +55,7 @@ contract CertController {
         newNft = _createCertCollection(_key, _certName, _certSymbol, _salt);
     }
 
-    function createCert(bytes32 _key, address _user, string memory _uri, uint256 _salt) public returns(uint256) {
+    function createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) public returns(uint256) {
         uint256 tokenId = _createCert(_key, _user, _uri, _salt);
         return tokenId;
     }
