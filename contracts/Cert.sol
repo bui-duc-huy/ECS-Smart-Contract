@@ -73,6 +73,12 @@ contract CertController is ICertController {
         return tokenId;
     }
 
+    function createManyCert(address _certCollection, address[] memory _users, string[] memory _uris, uint256[] memory _salts) public {
+        for(uint i = 0; i < _users.lenght; i++) {
+            createCert(_certCollection, _users[i], _uris[i], _salts[i]);
+        }
+    }
+
     function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public {
         INFT examNft = INFT(_examNft);
         address treeAddress = examNft.getTreeOfToken(_tokenId);
