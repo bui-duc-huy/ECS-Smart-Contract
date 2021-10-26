@@ -3,16 +3,18 @@ import "./interfaces/factories/IIdentityFactory.sol";
 import "./storage/EternalStorage.sol";
 import "./interfaces/bases/IIdentity.sol";
 import "./libraries/Ownable.sol";
-import "./interfaces/controllers/IUser.sol";
 
 
-contract UserController is Ownable, IUserController {
+contract UserController is Ownable {
     EternalStorage private _eternalStorage;
     string private _NFT_FACTORY = "NFT-FACTORY";
     string private _TREE_FACTORY = "TREE-FACTORY";
     string private _IDENTITY_FACTORY = "IDENTITY-FACTORY";
 
     string private _KEY_TO_IDENTITY = "KEY-IDENTITY";
+    
+    event MapIdentity(bytes32 Key, address Identity);
+    event IdentityCreated(address Identity, address Owner);
 
     constructor (address _eternalStorageAddress) public {
         _eternalStorage = EternalStorage(_eternalStorageAddress);
@@ -30,10 +32,8 @@ contract UserController is Ownable, IUserController {
     }
 
     function registerIdentity(
-        bytes32[] memory _initialKeys,
         bytes32[] memory _keys,
         uint256[] memory _purposes,
-        bytes32 _keyHash,
         uint256 _salt
     )
     public
@@ -42,8 +42,6 @@ contract UserController is Ownable, IUserController {
         IIdentityFactory identityFactory = IIdentityFactory(_eternalStorage.getAddressValue(factoryKey));
 
         address newIdentity = identityFactory.deploy(msg.sender, _keys, _purposes, _salt);  
-        IIdentity identity = IIdentity(newIdentity);
-
         _mapIdentity(keccak256(abi.encode(msg.sender)), newIdentity);
 
         emit IdentityCreated(newIdentity, tx.origin);
@@ -56,5 +54,9 @@ contract UserController is Ownable, IUserController {
 
     function getUserIdentity(bytes32 _key) public view returns(address identity) {
         identity = _getUserIdentity(_key);
+    }
+    
+    function getUserIdentity(address _owner) public view returns(address identity) {
+        identity = _getUserIdentity(keccak256(abi.encode(_owner)));
     }
 }

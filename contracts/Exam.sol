@@ -5,10 +5,9 @@ import "./libraries/String.sol";
 import "./interfaces/bases/INFT.sol";
 import "./interfaces/factories/ITreeFactory.sol";
 import "./interfaces/bases/IPartialMerkleTreeImplementation.sol";
-import "./interfaces/controllers/IExam.sol";
 import "./libraries/Ownable.sol";
 
-contract ExamController is IExamController, Ownable { 
+contract ExamController is  Ownable { 
     using Strings for string;
 
     EternalStorage private _eternalStorage;
@@ -24,6 +23,16 @@ contract ExamController is IExamController, Ownable {
     string private _KEY_TO_EXAM_ITEM = "KEY-TO-EXAM-ITEM";
     string private _KEY_TO_TOKEN_ID = "KEY-TO-TOKEN-ID";
 
+    event ExamCreated (
+        string Subject,
+        string Class,
+        string Time,
+        string Description,
+        address Creator,
+        address NFTAddress
+    );
+
+    event JoinExam (address Exam, address Student, uint256 TokenId);
 
     constructor (address _eternalStorageAddress) public {
         _eternalStorage = EternalStorage(_eternalStorageAddress);
@@ -61,9 +70,9 @@ contract ExamController is IExamController, Ownable {
         return newTree; 
     }
 
-    function _insertEvent(address _tree, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
+    function _insertEvent(address _tree, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature) private {
         IPartialMerkleTreeImplementation tree = IPartialMerkleTreeImplementation(_tree);
-        tree.insert(_action, _from, _to, _description, _date, _signature);
+        tree.insert(_action, _from, _to, _description, _date, _signer, _signature);
     }
 
     function createExam(string memory _subject, string memory _class, string memory _time, string memory _description, uint256 _salt) public returns(address) {
@@ -77,29 +86,29 @@ contract ExamController is IExamController, Ownable {
         return _eternalStorage.getAddressValue(hashKey);
     }
 
-    function getExamAddress(string memory _subject, string memory _class, string memory _time, string memory _description) public returns(address) {
+    function getExamAddress(string memory _subject, string memory _class, string memory _time, string memory _description) view public returns(address) {
         bytes32 key = keccak256(abi.encode(_subject, _class, _time, _description));
         return getExamAddress(key);
     }
 
-    function getExamTree(address _examNft, uint256 _tokenId) public returns(address) {
+    function getExamTree(address _examNft, uint256 _tokenId) public view returns(address) {
         INFT examNft = INFT(_examNft);
         return examNft.getTreeOfToken(_tokenId);
     }
 
-    function joinExam(address _examNft, address _student, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature, string memory _uri, uint256 _salt) public {
+    function joinExam(address _examNft, address _student, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature, string memory _uri, uint256 _salt) public {
         address treeAddress = _createTree(_salt); 
         uint256 tokenId = _createNft(_examNft, _student, treeAddress, _uri);
 
-        _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signature);
+        _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signer, _signature);
         
         emit JoinExam(_examNft, _student, tokenId); 
     }
 
-    function insertEventToExam(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
+    function insertEventToExam(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature) public {
         INFT examNft = INFT(_examNft);
         address treeAddress = examNft.getTreeOfToken(_tokenId);
 
-        _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signature);
+        _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signer, _signature);
     }
 }

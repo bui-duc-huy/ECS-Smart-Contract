@@ -1,8 +1,7 @@
 pragma solidity ^0.5.4;
 
 contract IUserController {
-    event MapIdentity(bytes32 Key, address Identity);
-    event IdentityCreated(address Identity, address Owner);
+
 
     function issueClaim(address _trustedIdentity, address _claimHolder, uint256 _claimType, uint256 _schema, address _issuer, bytes memory _signature, bytes memory _data, string memory _uri) public;
     function getUserIdentity(bytes32 _key) public view returns(address identity);

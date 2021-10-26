@@ -6,5 +6,5 @@ contract INFT {
     event RemoveSmallFile(uint256 TokenId, address Owner, address RemovedBy);
 
     function createNewToken(string memory _uri, address _receiver, address _tree) public returns(uint256);
-    function getTreeOfToken(uint256 _tokenId) public returns(address);
+    function getTreeOfToken(uint256 _tokenId) public view returns(address);
 }
