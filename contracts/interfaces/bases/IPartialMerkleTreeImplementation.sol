@@ -11,5 +11,5 @@ contract IPartialMerkleTreeImplementation {
         bytes Signature
     );
 
-    function insert(string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public;
+    function insert(string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature) public;
 }

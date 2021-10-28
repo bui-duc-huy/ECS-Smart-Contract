@@ -5,9 +5,8 @@ import "./interfaces/bases/IPartialMerkleTreeImplementation.sol";
 import "./interfaces/factories/ITreeFactory.sol";
 import "./storage/EternalStorage.sol";
 import "./interfaces/bases/INFT.sol";
-import "./interfaces/controllers/ICert.sol";
 
-contract CertController is ICertController {
+contract CertController {
     EternalStorage private _eternalStorage;
 
     string private _NFT_FACTORY = "NFT-FACTORY";
@@ -15,6 +14,10 @@ contract CertController is ICertController {
     string private _IDENTITY_FACTORY = "IDENTITY-FACTORY";
 
     string private _KEY_TO_CERT_COLLECTION = "KEY-TO-CERT-COLLECTION";
+    
+    event CertCollectionCreated (bytes32 Key, string CertName, string CertSymbol, address Creator, address CertCollectionAddress);
+
+    event CertIssued(address CertCollectionAddress, address Issuer, address Receiver);
 
     constructor (address _eternalStorageAddress) public {
         _eternalStorage = EternalStorage(_eternalStorageAddress);
@@ -32,7 +35,7 @@ contract CertController is ICertController {
         return newTree; 
     }
 
-    function _getCertCollection(bytes32 _key) private returns(address certCollection) {
+    function _getCertCollection(bytes32 _key) private view returns(address certCollection) {
         certCollection = _eternalStorage.getAddressValue(keccak256(abi.encode(_key, _KEY_TO_CERT_COLLECTION)));
     }
 
@@ -55,9 +58,9 @@ contract CertController is ICertController {
         return tokenId;
     }
 
-    function _insertEvent(address _tree, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) private {
+    function _insertEvent(address _tree, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature) private {
         IPartialMerkleTreeImplementation tree = IPartialMerkleTreeImplementation(_tree);
-        tree.insert(_action, _from, _to, _description, _date, _signature);
+        tree.insert(_action, _from, _to, _description, _date, _signer, _signature);
     }
 
     function createCertCollection(bytes32 _key, string memory _certName, string memory _certSymbol, uint256 _salt) public returns(address) {
@@ -65,6 +68,10 @@ contract CertController is ICertController {
 
         emit CertCollectionCreated(_key, _certName, _certSymbol, tx.origin, newNft);
         return newNft;
+    }
+    
+    function getCertCollection(bytes32 _key) public view returns(address) {
+        return _getCertCollection(_key);
     }
 
     function createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) public returns(uint256) {
@@ -80,10 +87,10 @@ contract CertController is ICertController {
         }
     }
 
-    function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public {
+    function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature) public {
         INFT examNft = INFT(_examNft);
         address treeAddress = examNft.getTreeOfToken(_tokenId);
 
-        _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signature);
+        _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signer, _signature);
     }
 }

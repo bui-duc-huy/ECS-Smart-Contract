@@ -30,7 +30,7 @@ contract NFT is ERC721, ERC721Enumerable, ERC721Metadata, INFT {
         return _id;
     }
 
-    function getTreeOfToken(uint256 _tokenId) public returns(address) {
+    function getTreeOfToken(uint256 _tokenId) public view returns(address) {
         return _treeOfToken[_tokenId];
     }
     

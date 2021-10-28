@@ -16,8 +16,13 @@ contract ECSAdmin is Ownable {
     function setFactory(bytes32 _key, address _factory) public onlyOwner {
         _eternalStorage.set(_key, _factory);
     }
+    
+    function setFactory(string memory _key, address _factory) public onlyOwner {
+        bytes32 factoryKey = keccak256(abi.encode(_key));
+        _eternalStorage.set(factoryKey, _factory);
+    }
 
-    function getFactory(bytes32 _key) public returns (address) {
+    function getFactory(bytes32 _key) public view returns (address) {
         return _eternalStorage.getAddressValue(_key);
     }
 }

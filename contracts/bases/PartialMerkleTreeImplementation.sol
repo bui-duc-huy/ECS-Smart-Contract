@@ -37,7 +37,7 @@ contract PartialMerkleTreeImplementation is IPartialMerkleTreeImplementation {
         _events[_key].signature = _signature;
     }
 
-    function getEvent(bytes32 _key) public returns(string memory action, string memory from , string memory to , string memory description, string memory date, address creator, bytes memory signature) {
+    function getEvent(bytes32 _key) public view returns(string memory action, string memory from , string memory to , string memory description, string memory date, address creator, bytes memory signature) {
         return (
             _events[_key].action,
             _events[_key].from,
@@ -49,15 +49,16 @@ contract PartialMerkleTreeImplementation is IPartialMerkleTreeImplementation {
         );
     }
 
-    function insert(string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public {
-        bytes32 key = keccak256(abi.encode(_action, _from, _to, _description, _date));
+    function insert(string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, address _signer, bytes memory _signature) public {
+        bytes32 key = keccak256(abi.encodePacked(_action, _from, _to, _description, _date));
         bytes32 message = ECDSA.toEthSignedMessageHash(key);
-        require(ECDSA.recover(message, _signature) == tx.origin, "Signature invalid");
+        address signer = ECDSA.recover(message, _signature);
+        require(signer == _signer, "Signature invalid");
 
-        _setEvents(key, _action, _from, _to, _description, _date, tx.origin, _signature);
+        _setEvents(key, _action, _from, _to, _description, _date, _signer, _signature);
         tree.insert(abi.encodePacked(key), _signature);
 
-        emit DataInserted(_action, _from, _to, _description, _date, tx.origin, _signature);
+        emit DataInserted(_action, _from, _to, _description, _date, _signer, _signature);
     }
 
     function commitBranchOfNonInclusion(bytes memory key, bytes32 potentialSiblingLabel, bytes32 potentialSiblingValue, uint branchMask, bytes32[] memory siblings) public {

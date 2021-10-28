@@ -10,11 +10,11 @@ contract Ownable {
     }
 
     modifier onlyOwner() {
-        require(owner() == msg.sender, "Ownable: caller is not the owner");
+        require(_owner == msg.sender, "Ownable: caller is not the owner");
         _;
     }
 
-    function owner() public returns (address) {
+    function owner() external view returns (address) {
         return _owner;
     }
 
