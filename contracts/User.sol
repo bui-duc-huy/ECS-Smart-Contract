@@ -34,6 +34,7 @@ contract UserController is Ownable {
     function registerIdentity(
         bytes32[] memory _keys,
         uint256[] memory _purposes,
+        bytes32 _keyHash,
         uint256 _salt
     )
     public
