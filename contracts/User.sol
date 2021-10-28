@@ -45,6 +45,7 @@ contract UserController is Ownable, IUserController {
         IIdentity identity = IIdentity(newIdentity);
 
         _mapIdentity(keccak256(abi.encode(msg.sender)), newIdentity);
+        _mapIdentity(_keyHash, newIdentity);
 
         emit IdentityCreated(newIdentity, tx.origin);
     }

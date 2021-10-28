@@ -1,4 +1,5 @@
 pragma solidity ^0.5.4;
+pragma experimental ABIEncoderV2;
 import "./interfaces/factories/INFTFactory.sol";
 import "./interfaces/bases/IPartialMerkleTreeImplementation.sol";
 import "./interfaces/factories/ITreeFactory.sol";
@@ -49,7 +50,7 @@ contract CertController is ICertController {
         INFT nft = INFT(_certCollection);
 
         address tree = _createTree(_salt);
-        uint256 tokenId = nft.createNewToken(_uri, _user, tree);
+        uint256 tokenId = nft.createNewToken(_uri, _user, tree, _salt);
 
         return tokenId;
     }
@@ -74,7 +75,7 @@ contract CertController is ICertController {
     }
 
     function createManyCert(address _certCollection, address[] memory _users, string[] memory _uris, uint256[] memory _salts) public {
-        for(uint i = 0; i < _users.lenght; i++) {
+        for(uint i = 0; i < _users.length; i++) {
             createCert(_certCollection, _users[i], _uris[i], _salts[i]);
         }
     }

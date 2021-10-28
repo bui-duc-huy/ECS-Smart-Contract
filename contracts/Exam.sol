@@ -46,9 +46,9 @@ contract ExamController is IExamController, Ownable {
         return newNft;
     }
 
-    function _createNft(address _examNft, address _receiver, address _treeAddress, string memory _uri) private returns(uint256) {
+    function _createNft(address _examNft, address _receiver, address _treeAddress, string memory _uri, uint256 _id) private returns(uint256) {
         INFT examNft = INFT(_examNft);
-        uint256 tokenId = examNft.createNewToken(_uri, _receiver,  _treeAddress);
+        uint256 tokenId = examNft.createNewToken(_uri, _receiver,  _treeAddress, _id);
 
         return tokenId;
     }
@@ -89,7 +89,7 @@ contract ExamController is IExamController, Ownable {
 
     function joinExam(address _examNft, address _student, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature, string memory _uri, uint256 _salt) public {
         address treeAddress = _createTree(_salt); 
-        uint256 tokenId = _createNft(_examNft, _student, treeAddress, _uri);
+        uint256 tokenId = _createNft(_examNft, _student, treeAddress, _uri, _salt);
 
         _insertEvent(treeAddress, _action, _from, _to, _description, _date, _signature);
         
