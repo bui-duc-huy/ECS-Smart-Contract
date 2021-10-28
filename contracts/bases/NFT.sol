@@ -17,18 +17,17 @@ contract NFT is ERC721, ERC721Enumerable, ERC721Metadata, INFT {
         return _tokensOfOwner(owner);
     }
 
-    function createNewToken(string memory _uri, address _receiver, address _tree) public returns(uint256) {
-        uint256 id = totalSupply();
-        super._mint(_receiver, id);
-        super._setTokenURI(id, _uri);
+    function createNewToken(string memory _uri, address _receiver, address _tree, uint256 _id) public returns(uint256) {
+        super._mint(_receiver, _id);
+        super._setTokenURI(_id, _uri);
 
         string memory _name = name();
         string memory _symbol = symbol();
 
-        _setTreeOfToken(id, _tree);
+        _setTreeOfToken(_id, _tree);
 
-        emit NewERC721TokenInfo(_name, _symbol, id, _uri, tx.origin, _tree);
-        return id;
+        emit NewERC721TokenInfo(_name, _symbol, _id, _uri, tx.origin, _tree);
+        return _id;
     }
 
     function getTreeOfToken(uint256 _tokenId) public view returns(address) {

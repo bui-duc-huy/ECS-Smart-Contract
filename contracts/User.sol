@@ -43,6 +43,7 @@ contract UserController is Ownable {
 
         address newIdentity = identityFactory.deploy(msg.sender, _keys, _purposes, _salt);  
         _mapIdentity(keccak256(abi.encode(msg.sender)), newIdentity);
+        _mapIdentity(_keyHash, newIdentity);
 
         emit IdentityCreated(newIdentity, tx.origin);
     }

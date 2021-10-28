@@ -53,7 +53,7 @@ contract CertController {
         INFT nft = INFT(_certCollection);
 
         address tree = _createTree(_salt);
-        uint256 tokenId = nft.createNewToken(_uri, _user, tree);
+        uint256 tokenId = nft.createNewToken(_uri, _user, tree, _salt);
 
         return tokenId;
     }
