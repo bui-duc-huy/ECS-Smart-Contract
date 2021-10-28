@@ -1,0 +1,304 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "Salt",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "Tree",
+          "type": "address"
+        }
+      ],
+      "name": "TreeCreated",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_initialRoot",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_salt",
+          "type": "uint256"
+        }
+      ],
+      "name": "deploy",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "19": "contracts/interfaces/factories/ITreeFactory.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/interfaces/factories/ITreeFactory.sol",
+    "exportedSymbols": {
+      "ITreeFactory": [
+        3507
+      ]
+    },
+    "id": 3508,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3491,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:19"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 3507,
+        "linearizedBaseContracts": [
+          3507
+        ],
+        "name": "ITreeFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 3497,
+            "name": "TreeCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3496,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3493,
+                  "indexed": false,
+                  "name": "Salt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3497,
+                  "src": "71:9:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3492,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "71:4:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3495,
+                  "indexed": false,
+                  "name": "Tree",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3497,
+                  "src": "82:12:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3494,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "82:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "70:25:19"
+            },
+            "src": "53:43:19"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3506,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deploy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3502,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3499,
+                  "name": "_initialRoot",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3506,
+                  "src": "117:20:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3498,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "117:7:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3501,
+                  "name": "_salt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3506,
+                  "src": "139:10:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3500,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "139:4:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "116:34:19"
+            },
+            "returnParameters": {
+              "id": 3505,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3504,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3506,
+                  "src": "166:7:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3503,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "166:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:9:19"
+            },
+            "scope": 3507,
+            "src": "101:74:19",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3508,
+        "src": "25:152:19"
+      }
+    ],
+    "src": "0:178:19"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.5.17+commit.d19bba13"
+  },
+  "contractName": "ITreeFactory",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "methods": {}
+  },
+  "offset": [
+    25,
+    177
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "df821a4a76d3d8bcf45d5170b1b1adc6765f633b",
+  "source": "pragma solidity ^0.5.4;\n\ncontract ITreeFactory {\n    event TreeCreated(uint Salt, address Tree);\n    function deploy(bytes32 _initialRoot, uint _salt) public returns(address);\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/interfaces/factories/ITreeFactory.sol",
+  "type": "contract"
+}
