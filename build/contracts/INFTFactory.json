@@ -1,17 +1,16 @@
 {
+  "contractName": "INFTFactory",
   "abi": [
     {
       "anonymous": false,
       "inputs": [
         {
           "indexed": false,
-          "internalType": "uint256",
           "name": "Salt",
           "type": "uint256"
         },
         {
           "indexed": false,
-          "internalType": "address",
           "name": "NFT",
           "type": "address"
         }
@@ -23,17 +22,14 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "string",
           "name": "_name",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "_symbol",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "_salt",
           "type": "uint256"
         }
@@ -41,7 +37,6 @@
       "name": "deploy",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -51,21 +46,25 @@
       "type": "function"
     }
   ],
-  "allSourcePaths": {
-    "18": "contracts/interfaces/factories/INFTFactory.sol"
-  },
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.4;\n\ncontract INFTFactory {\n    event NFTCreated(uint Salt, address NFT);\n    function deploy(string memory _name, string memory _symbol, uint _salt) public returns(address);\n}\n",
+  "sourcePath": "/home/duchuy/Documents/bach_khoa/luan_van/ecs/ecs-smart-contracts/contracts/interfaces/factories/INFTFactory.sol",
   "ast": {
-    "absolutePath": "contracts/interfaces/factories/INFTFactory.sol",
+    "absolutePath": "project:/contracts/interfaces/factories/INFTFactory.sol",
     "exportedSymbols": {
       "INFTFactory": [
-        3489
+        12653
       ]
     },
-    "id": 3490,
+    "id": 12654,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3471,
+        "id": 12635,
         "literals": [
           "solidity",
           "^",
@@ -73,7 +72,7 @@
           ".4"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:18"
+        "src": "0:23:53"
       },
       {
         "baseContracts": [],
@@ -81,9 +80,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 3489,
+        "id": 12653,
         "linearizedBaseContracts": [
-          3489
+          12653
         ],
         "name": "INFTFactory",
         "nodeType": "ContractDefinition",
@@ -91,21 +90,21 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3477,
+            "id": 12641,
             "name": "NFTCreated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3476,
+              "id": 12640,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3473,
+                  "id": 12637,
                   "indexed": false,
                   "name": "Salt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3477,
-                  "src": "69:9:18",
+                  "scope": 12641,
+                  "src": "69:9:53",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -113,10 +112,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3472,
+                    "id": 12636,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "69:4:18",
+                    "src": "69:4:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -127,12 +126,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3475,
+                  "id": 12639,
                   "indexed": false,
                   "name": "NFT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3477,
-                  "src": "80:11:18",
+                  "scope": 12641,
+                  "src": "80:11:53",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -140,10 +139,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3474,
+                    "id": 12638,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "80:7:18",
+                    "src": "80:7:53",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -154,30 +153,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "68:24:18"
+              "src": "68:24:53"
             },
-            "src": "52:41:18"
+            "src": "52:41:53"
           },
           {
             "body": null,
             "documentation": null,
-            "id": 3488,
+            "id": 12652,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deploy",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3484,
+              "id": 12648,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3479,
+                  "id": 12643,
                   "name": "_name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3488,
-                  "src": "114:19:18",
+                  "scope": 12652,
+                  "src": "114:19:53",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -185,10 +184,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 3478,
+                    "id": 12642,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "114:6:18",
+                    "src": "114:6:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -199,11 +198,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3481,
+                  "id": 12645,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3488,
-                  "src": "135:21:18",
+                  "scope": 12652,
+                  "src": "135:21:53",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -211,10 +210,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 3480,
+                    "id": 12644,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "135:6:18",
+                    "src": "135:6:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -225,11 +224,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3483,
+                  "id": 12647,
                   "name": "_salt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3488,
-                  "src": "158:10:18",
+                  "scope": 12652,
+                  "src": "158:10:53",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -237,10 +236,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3482,
+                    "id": 12646,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "158:4:18",
+                    "src": "158:4:53",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -250,19 +249,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "113:56:18"
+              "src": "113:56:53"
             },
             "returnParameters": {
-              "id": 3487,
+              "id": 12651,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3486,
+                  "id": 12650,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3488,
-                  "src": "185:7:18",
+                  "scope": 12652,
+                  "src": "185:7:53",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -270,10 +269,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3485,
+                    "id": 12649,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "185:7:18",
+                    "src": "185:7:53",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -284,52 +283,298 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "184:9:18"
+              "src": "184:9:53"
             },
-            "scope": 3489,
-            "src": "98:96:18",
+            "scope": 12653,
+            "src": "98:96:53",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 3490,
-        "src": "25:171:18"
+        "scope": 12654,
+        "src": "25:171:53"
       }
     ],
-    "src": "0:197:18"
+    "src": "0:197:53"
   },
-  "bytecode": "",
-  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-  "compiler": {
-    "evm_version": "istanbul",
-    "optimizer": {
-      "enabled": true,
-      "runs": 200
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/factories/INFTFactory.sol",
+      "exportedSymbols": {
+        "INFTFactory": [
+          12653
+        ]
+      }
     },
-    "version": "0.5.17+commit.d19bba13"
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".4"
+          ]
+        },
+        "id": 12635,
+        "name": "PragmaDirective",
+        "src": "0:23:53"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            12653
+          ],
+          "name": "INFTFactory",
+          "scope": 12654
+        },
+        "children": [
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "NFTCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Salt",
+                      "scope": 12641,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 12636,
+                        "name": "ElementaryTypeName",
+                        "src": "69:4:53"
+                      }
+                    ],
+                    "id": 12637,
+                    "name": "VariableDeclaration",
+                    "src": "69:9:53"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "NFT",
+                      "scope": 12641,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12638,
+                        "name": "ElementaryTypeName",
+                        "src": "80:7:53"
+                      }
+                    ],
+                    "id": 12639,
+                    "name": "VariableDeclaration",
+                    "src": "80:11:53"
+                  }
+                ],
+                "id": 12640,
+                "name": "ParameterList",
+                "src": "68:24:53"
+              }
+            ],
+            "id": 12641,
+            "name": "EventDefinition",
+            "src": "52:41:53"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "deploy",
+              "scope": 12653,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_name",
+                      "scope": 12652,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12642,
+                        "name": "ElementaryTypeName",
+                        "src": "114:6:53"
+                      }
+                    ],
+                    "id": 12643,
+                    "name": "VariableDeclaration",
+                    "src": "114:19:53"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_symbol",
+                      "scope": 12652,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12644,
+                        "name": "ElementaryTypeName",
+                        "src": "135:6:53"
+                      }
+                    ],
+                    "id": 12645,
+                    "name": "VariableDeclaration",
+                    "src": "135:21:53"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_salt",
+                      "scope": 12652,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 12646,
+                        "name": "ElementaryTypeName",
+                        "src": "158:4:53"
+                      }
+                    ],
+                    "id": 12647,
+                    "name": "VariableDeclaration",
+                    "src": "158:10:53"
+                  }
+                ],
+                "id": 12648,
+                "name": "ParameterList",
+                "src": "113:56:53"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 12652,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12649,
+                        "name": "ElementaryTypeName",
+                        "src": "185:7:53"
+                      }
+                    ],
+                    "id": 12650,
+                    "name": "VariableDeclaration",
+                    "src": "185:7:53"
+                  }
+                ],
+                "id": 12651,
+                "name": "ParameterList",
+                "src": "184:9:53"
+              }
+            ],
+            "id": 12652,
+            "name": "FunctionDefinition",
+            "src": "98:96:53"
+          }
+        ],
+        "id": 12653,
+        "name": "ContractDefinition",
+        "src": "25:171:53"
+      }
+    ],
+    "id": 12654,
+    "name": "SourceUnit",
+    "src": "0:197:53"
   },
-  "contractName": "INFTFactory",
-  "coverageMap": {
-    "branches": {},
-    "statements": {}
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
-  "dependencies": [],
-  "deployedBytecode": "",
-  "deployedSourceMap": "",
-  "language": "Solidity",
-  "natspec": {
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-11-01T14:38:10.941Z",
+  "devdoc": {
     "methods": {}
   },
-  "offset": [
-    25,
-    196
-  ],
-  "opcodes": "",
-  "pcMap": {},
-  "sha1": "608fd94f2a0c7d8d0d30eab350626b7e8ff9e389",
-  "source": "pragma solidity ^0.5.4;\n\ncontract INFTFactory {\n    event NFTCreated(uint Salt, address NFT);\n    function deploy(string memory _name, string memory _symbol, uint _salt) public returns(address);\n}\n",
-  "sourceMap": "",
-  "sourcePath": "contracts/interfaces/factories/INFTFactory.sol",
-  "type": "contract"
+  "userdoc": {
+    "methods": {}
+  }
 }

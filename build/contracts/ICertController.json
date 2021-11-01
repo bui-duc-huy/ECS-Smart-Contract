@@ -1,35 +1,31 @@
 {
+  "contractName": "ICertController",
   "abi": [
     {
       "anonymous": false,
       "inputs": [
         {
           "indexed": false,
-          "internalType": "bytes32",
           "name": "Key",
           "type": "bytes32"
         },
         {
           "indexed": false,
-          "internalType": "string",
           "name": "CertName",
           "type": "string"
         },
         {
           "indexed": false,
-          "internalType": "string",
           "name": "CertSymbol",
           "type": "string"
         },
         {
           "indexed": false,
-          "internalType": "address",
           "name": "Creator",
           "type": "address"
         },
         {
           "indexed": false,
-          "internalType": "address",
           "name": "CertCollectionAddress",
           "type": "address"
         }
@@ -42,19 +38,16 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "address",
           "name": "CertCollectionAddress",
           "type": "address"
         },
         {
           "indexed": false,
-          "internalType": "address",
           "name": "Issuer",
           "type": "address"
         },
         {
           "indexed": false,
-          "internalType": "address",
           "name": "Receiver",
           "type": "address"
         }
@@ -66,58 +59,18 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
-          "name": "_certCollection",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_user",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "_uri",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_salt",
-          "type": "uint256"
-        }
-      ],
-      "name": "createCert",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "bytes32",
           "name": "_key",
           "type": "bytes32"
         },
         {
-          "internalType": "string",
           "name": "_certName",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "_certSymbol",
           "type": "string"
         },
         {
-          "internalType": "uint256",
           "name": "_salt",
           "type": "uint256"
         }
@@ -125,7 +78,6 @@
       "name": "createCertCollection",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -138,42 +90,65 @@
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
+          "name": "_certCollection",
+          "type": "address"
+        },
+        {
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "name": "_uri",
+          "type": "string"
+        },
+        {
+          "name": "_salt",
+          "type": "uint256"
+        }
+      ],
+      "name": "createCert",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "name": "_examNft",
           "type": "address"
         },
         {
-          "internalType": "uint256",
           "name": "_tokenId",
           "type": "uint256"
         },
         {
-          "internalType": "string",
           "name": "_action",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "_from",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "_to",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "_description",
           "type": "string"
         },
         {
-          "internalType": "string",
           "name": "_date",
           "type": "string"
         },
         {
-          "internalType": "bytes",
           "name": "_signature",
           "type": "bytes"
         }
@@ -185,21 +160,25 @@
       "type": "function"
     }
   ],
-  "allSourcePaths": {
-    "14": "contracts/interfaces/controllers/ICert.sol"
-  },
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.4;\n\ncontract ICertController {\n    event CertCollectionCreated (bytes32 Key, string CertName, string CertSymbol, address Creator, address CertCollectionAddress);\n\n    event CertIssued(address CertCollectionAddress, address Issuer, address Receiver);\n\n    function createCertCollection(bytes32 _key, string memory _certName, string memory _certSymbol, uint256 _salt) public returns(address);\n\n    function createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) public returns(uint256);\n\n    function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public;\n}\n",
+  "sourcePath": "/home/duchuy/Documents/bach_khoa/luan_van/ecs/ecs-smart-contracts/contracts/interfaces/controllers/ICert.sol",
   "ast": {
-    "absolutePath": "contracts/interfaces/controllers/ICert.sol",
+    "absolutePath": "project:/contracts/interfaces/controllers/ICert.sol",
     "exportedSymbols": {
       "ICertController": [
-        2627
+        12481
       ]
     },
-    "id": 2628,
+    "id": 12482,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2561,
+        "id": 12415,
         "literals": [
           "solidity",
           "^",
@@ -207,7 +186,7 @@
           ".4"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:14"
+        "src": "0:23:49"
       },
       {
         "baseContracts": [],
@@ -215,9 +194,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2627,
+        "id": 12481,
         "linearizedBaseContracts": [
-          2627
+          12481
         ],
         "name": "ICertController",
         "nodeType": "ContractDefinition",
@@ -225,21 +204,21 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 2573,
+            "id": 12427,
             "name": "CertCollectionCreated",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2572,
+              "id": 12426,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2563,
+                  "id": 12417,
                   "indexed": false,
                   "name": "Key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2573,
-                  "src": "85:11:14",
+                  "scope": 12427,
+                  "src": "85:11:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -247,10 +226,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 2562,
+                    "id": 12416,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "85:7:14",
+                    "src": "85:7:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -261,12 +240,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2565,
+                  "id": 12419,
                   "indexed": false,
                   "name": "CertName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2573,
-                  "src": "98:15:14",
+                  "scope": 12427,
+                  "src": "98:15:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -274,10 +253,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2564,
+                    "id": 12418,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "98:6:14",
+                    "src": "98:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -288,12 +267,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2567,
+                  "id": 12421,
                   "indexed": false,
                   "name": "CertSymbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2573,
-                  "src": "115:17:14",
+                  "scope": 12427,
+                  "src": "115:17:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -301,10 +280,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2566,
+                    "id": 12420,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "115:6:14",
+                    "src": "115:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -315,12 +294,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2569,
+                  "id": 12423,
                   "indexed": false,
                   "name": "Creator",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2573,
-                  "src": "134:15:14",
+                  "scope": 12427,
+                  "src": "134:15:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -328,10 +307,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2568,
+                    "id": 12422,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "134:7:14",
+                    "src": "134:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -343,12 +322,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2571,
+                  "id": 12425,
                   "indexed": false,
                   "name": "CertCollectionAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2573,
-                  "src": "151:29:14",
+                  "scope": 12427,
+                  "src": "151:29:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -356,10 +335,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2570,
+                    "id": 12424,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "151:7:14",
+                    "src": "151:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -370,28 +349,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "84:97:14"
+              "src": "84:97:49"
             },
-            "src": "56:126:14"
+            "src": "56:126:49"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 2581,
+            "id": 12435,
             "name": "CertIssued",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2580,
+              "id": 12434,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2575,
+                  "id": 12429,
                   "indexed": false,
                   "name": "CertCollectionAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2581,
-                  "src": "205:29:14",
+                  "scope": 12435,
+                  "src": "205:29:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -399,10 +378,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2574,
+                    "id": 12428,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "205:7:14",
+                    "src": "205:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -414,12 +393,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2577,
+                  "id": 12431,
                   "indexed": false,
                   "name": "Issuer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2581,
-                  "src": "236:14:14",
+                  "scope": 12435,
+                  "src": "236:14:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -427,10 +406,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2576,
+                    "id": 12430,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "236:7:14",
+                    "src": "236:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -442,12 +421,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2579,
+                  "id": 12433,
                   "indexed": false,
                   "name": "Receiver",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2581,
-                  "src": "252:16:14",
+                  "scope": 12435,
+                  "src": "252:16:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -455,10 +434,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2578,
+                    "id": 12432,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "252:7:14",
+                    "src": "252:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -469,30 +448,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "204:65:14"
+              "src": "204:65:49"
             },
-            "src": "188:82:14"
+            "src": "188:82:49"
           },
           {
             "body": null,
             "documentation": null,
-            "id": 2594,
+            "id": 12448,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createCertCollection",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2590,
+              "id": 12444,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2583,
+                  "id": 12437,
                   "name": "_key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2594,
-                  "src": "306:12:14",
+                  "scope": 12448,
+                  "src": "306:12:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -500,10 +479,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 2582,
+                    "id": 12436,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "306:7:14",
+                    "src": "306:7:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -514,11 +493,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2585,
+                  "id": 12439,
                   "name": "_certName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2594,
-                  "src": "320:23:14",
+                  "scope": 12448,
+                  "src": "320:23:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -526,10 +505,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2584,
+                    "id": 12438,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "320:6:14",
+                    "src": "320:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -540,11 +519,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2587,
+                  "id": 12441,
                   "name": "_certSymbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2594,
-                  "src": "345:25:14",
+                  "scope": 12448,
+                  "src": "345:25:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -552,10 +531,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2586,
+                    "id": 12440,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "345:6:14",
+                    "src": "345:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -566,11 +545,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2589,
+                  "id": 12443,
                   "name": "_salt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2594,
-                  "src": "372:13:14",
+                  "scope": 12448,
+                  "src": "372:13:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -578,10 +557,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2588,
+                    "id": 12442,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "372:7:14",
+                    "src": "372:7:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -591,19 +570,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "305:81:14"
+              "src": "305:81:49"
             },
             "returnParameters": {
-              "id": 2593,
+              "id": 12447,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2592,
+                  "id": 12446,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2594,
-                  "src": "402:7:14",
+                  "scope": 12448,
+                  "src": "402:7:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -611,10 +590,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2591,
+                    "id": 12445,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:7:14",
+                    "src": "402:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -625,10 +604,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:9:14"
+              "src": "401:9:49"
             },
-            "scope": 2627,
-            "src": "276:135:14",
+            "scope": 12481,
+            "src": "276:135:49",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -636,23 +615,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2607,
+            "id": 12461,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "createCert",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2603,
+              "id": 12457,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2596,
+                  "id": 12450,
                   "name": "_certCollection",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2607,
-                  "src": "437:23:14",
+                  "scope": 12461,
+                  "src": "437:23:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -660,10 +639,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2595,
+                    "id": 12449,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "437:7:14",
+                    "src": "437:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -675,11 +654,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2598,
+                  "id": 12452,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2607,
-                  "src": "462:13:14",
+                  "scope": 12461,
+                  "src": "462:13:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -687,10 +666,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2597,
+                    "id": 12451,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "462:7:14",
+                    "src": "462:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -702,11 +681,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2600,
+                  "id": 12454,
                   "name": "_uri",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2607,
-                  "src": "477:18:14",
+                  "scope": 12461,
+                  "src": "477:18:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -714,10 +693,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2599,
+                    "id": 12453,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "477:6:14",
+                    "src": "477:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -728,11 +707,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2602,
+                  "id": 12456,
                   "name": "_salt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2607,
-                  "src": "497:13:14",
+                  "scope": 12461,
+                  "src": "497:13:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -740,10 +719,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2601,
+                    "id": 12455,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "497:7:14",
+                    "src": "497:7:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -753,19 +732,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "436:75:14"
+              "src": "436:75:49"
             },
             "returnParameters": {
-              "id": 2606,
+              "id": 12460,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2605,
+                  "id": 12459,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2607,
-                  "src": "527:7:14",
+                  "scope": 12461,
+                  "src": "527:7:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -773,10 +752,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2604,
+                    "id": 12458,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "527:7:14",
+                    "src": "527:7:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -786,10 +765,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "526:9:14"
+              "src": "526:9:49"
             },
-            "scope": 2627,
-            "src": "417:119:14",
+            "scope": 12481,
+            "src": "417:119:49",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -797,23 +776,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2626,
+            "id": 12480,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "insertEventToCert",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2624,
+              "id": 12478,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2609,
+                  "id": 12463,
                   "name": "_examNft",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "569:16:14",
+                  "scope": 12480,
+                  "src": "569:16:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -821,10 +800,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2608,
+                    "id": 12462,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "569:7:14",
+                    "src": "569:7:49",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -836,11 +815,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2611,
+                  "id": 12465,
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "587:16:14",
+                  "scope": 12480,
+                  "src": "587:16:49",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -848,10 +827,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2610,
+                    "id": 12464,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "587:7:14",
+                    "src": "587:7:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -862,11 +841,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2613,
+                  "id": 12467,
                   "name": "_action",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "605:21:14",
+                  "scope": 12480,
+                  "src": "605:21:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -874,10 +853,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2612,
+                    "id": 12466,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "605:6:14",
+                    "src": "605:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -888,11 +867,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2615,
+                  "id": 12469,
                   "name": "_from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "628:19:14",
+                  "scope": 12480,
+                  "src": "628:19:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -900,10 +879,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2614,
+                    "id": 12468,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "628:6:14",
+                    "src": "628:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -914,11 +893,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2617,
+                  "id": 12471,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "649:17:14",
+                  "scope": 12480,
+                  "src": "649:17:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -926,10 +905,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2616,
+                    "id": 12470,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "649:6:14",
+                    "src": "649:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -940,11 +919,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2619,
+                  "id": 12473,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "668:26:14",
+                  "scope": 12480,
+                  "src": "668:26:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -952,10 +931,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2618,
+                    "id": 12472,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "668:6:14",
+                    "src": "668:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -966,11 +945,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2621,
+                  "id": 12475,
                   "name": "_date",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "696:19:14",
+                  "scope": 12480,
+                  "src": "696:19:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -978,10 +957,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2620,
+                    "id": 12474,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "696:6:14",
+                    "src": "696:6:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -992,11 +971,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2623,
+                  "id": 12477,
                   "name": "_signature",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2626,
-                  "src": "717:23:14",
+                  "scope": 12480,
+                  "src": "717:23:49",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1004,10 +983,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 2622,
+                    "id": 12476,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "717:5:14",
+                    "src": "717:5:49",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -1017,58 +996,932 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "568:173:14"
+              "src": "568:173:49"
             },
             "returnParameters": {
-              "id": 2625,
+              "id": 12479,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "748:0:14"
+              "src": "748:0:49"
             },
-            "scope": 2627,
-            "src": "542:207:14",
+            "scope": 12481,
+            "src": "542:207:49",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2628,
-        "src": "25:726:14"
+        "scope": 12482,
+        "src": "25:726:49"
       }
     ],
-    "src": "0:752:14"
+    "src": "0:752:49"
   },
-  "bytecode": "",
-  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-  "compiler": {
-    "evm_version": "istanbul",
-    "optimizer": {
-      "enabled": true,
-      "runs": 200
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/controllers/ICert.sol",
+      "exportedSymbols": {
+        "ICertController": [
+          12481
+        ]
+      }
     },
-    "version": "0.5.17+commit.d19bba13"
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".4"
+          ]
+        },
+        "id": 12415,
+        "name": "PragmaDirective",
+        "src": "0:23:49"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            12481
+          ],
+          "name": "ICertController",
+          "scope": 12482
+        },
+        "children": [
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "CertCollectionCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Key",
+                      "scope": 12427,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 12416,
+                        "name": "ElementaryTypeName",
+                        "src": "85:7:49"
+                      }
+                    ],
+                    "id": 12417,
+                    "name": "VariableDeclaration",
+                    "src": "85:11:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "CertName",
+                      "scope": 12427,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12418,
+                        "name": "ElementaryTypeName",
+                        "src": "98:6:49"
+                      }
+                    ],
+                    "id": 12419,
+                    "name": "VariableDeclaration",
+                    "src": "98:15:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "CertSymbol",
+                      "scope": 12427,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12420,
+                        "name": "ElementaryTypeName",
+                        "src": "115:6:49"
+                      }
+                    ],
+                    "id": 12421,
+                    "name": "VariableDeclaration",
+                    "src": "115:17:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Creator",
+                      "scope": 12427,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12422,
+                        "name": "ElementaryTypeName",
+                        "src": "134:7:49"
+                      }
+                    ],
+                    "id": 12423,
+                    "name": "VariableDeclaration",
+                    "src": "134:15:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "CertCollectionAddress",
+                      "scope": 12427,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12424,
+                        "name": "ElementaryTypeName",
+                        "src": "151:7:49"
+                      }
+                    ],
+                    "id": 12425,
+                    "name": "VariableDeclaration",
+                    "src": "151:29:49"
+                  }
+                ],
+                "id": 12426,
+                "name": "ParameterList",
+                "src": "84:97:49"
+              }
+            ],
+            "id": 12427,
+            "name": "EventDefinition",
+            "src": "56:126:49"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "CertIssued"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "CertCollectionAddress",
+                      "scope": 12435,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12428,
+                        "name": "ElementaryTypeName",
+                        "src": "205:7:49"
+                      }
+                    ],
+                    "id": 12429,
+                    "name": "VariableDeclaration",
+                    "src": "205:29:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Issuer",
+                      "scope": 12435,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12430,
+                        "name": "ElementaryTypeName",
+                        "src": "236:7:49"
+                      }
+                    ],
+                    "id": 12431,
+                    "name": "VariableDeclaration",
+                    "src": "236:14:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Receiver",
+                      "scope": 12435,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12432,
+                        "name": "ElementaryTypeName",
+                        "src": "252:7:49"
+                      }
+                    ],
+                    "id": 12433,
+                    "name": "VariableDeclaration",
+                    "src": "252:16:49"
+                  }
+                ],
+                "id": 12434,
+                "name": "ParameterList",
+                "src": "204:65:49"
+              }
+            ],
+            "id": 12435,
+            "name": "EventDefinition",
+            "src": "188:82:49"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "createCertCollection",
+              "scope": 12481,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_key",
+                      "scope": 12448,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 12436,
+                        "name": "ElementaryTypeName",
+                        "src": "306:7:49"
+                      }
+                    ],
+                    "id": 12437,
+                    "name": "VariableDeclaration",
+                    "src": "306:12:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_certName",
+                      "scope": 12448,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12438,
+                        "name": "ElementaryTypeName",
+                        "src": "320:6:49"
+                      }
+                    ],
+                    "id": 12439,
+                    "name": "VariableDeclaration",
+                    "src": "320:23:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_certSymbol",
+                      "scope": 12448,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12440,
+                        "name": "ElementaryTypeName",
+                        "src": "345:6:49"
+                      }
+                    ],
+                    "id": 12441,
+                    "name": "VariableDeclaration",
+                    "src": "345:25:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_salt",
+                      "scope": 12448,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12442,
+                        "name": "ElementaryTypeName",
+                        "src": "372:7:49"
+                      }
+                    ],
+                    "id": 12443,
+                    "name": "VariableDeclaration",
+                    "src": "372:13:49"
+                  }
+                ],
+                "id": 12444,
+                "name": "ParameterList",
+                "src": "305:81:49"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 12448,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12445,
+                        "name": "ElementaryTypeName",
+                        "src": "402:7:49"
+                      }
+                    ],
+                    "id": 12446,
+                    "name": "VariableDeclaration",
+                    "src": "402:7:49"
+                  }
+                ],
+                "id": 12447,
+                "name": "ParameterList",
+                "src": "401:9:49"
+              }
+            ],
+            "id": 12448,
+            "name": "FunctionDefinition",
+            "src": "276:135:49"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "createCert",
+              "scope": 12481,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_certCollection",
+                      "scope": 12461,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12449,
+                        "name": "ElementaryTypeName",
+                        "src": "437:7:49"
+                      }
+                    ],
+                    "id": 12450,
+                    "name": "VariableDeclaration",
+                    "src": "437:23:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_user",
+                      "scope": 12461,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12451,
+                        "name": "ElementaryTypeName",
+                        "src": "462:7:49"
+                      }
+                    ],
+                    "id": 12452,
+                    "name": "VariableDeclaration",
+                    "src": "462:13:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_uri",
+                      "scope": 12461,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12453,
+                        "name": "ElementaryTypeName",
+                        "src": "477:6:49"
+                      }
+                    ],
+                    "id": 12454,
+                    "name": "VariableDeclaration",
+                    "src": "477:18:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_salt",
+                      "scope": 12461,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12455,
+                        "name": "ElementaryTypeName",
+                        "src": "497:7:49"
+                      }
+                    ],
+                    "id": 12456,
+                    "name": "VariableDeclaration",
+                    "src": "497:13:49"
+                  }
+                ],
+                "id": 12457,
+                "name": "ParameterList",
+                "src": "436:75:49"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 12461,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12458,
+                        "name": "ElementaryTypeName",
+                        "src": "527:7:49"
+                      }
+                    ],
+                    "id": 12459,
+                    "name": "VariableDeclaration",
+                    "src": "527:7:49"
+                  }
+                ],
+                "id": 12460,
+                "name": "ParameterList",
+                "src": "526:9:49"
+              }
+            ],
+            "id": 12461,
+            "name": "FunctionDefinition",
+            "src": "417:119:49"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "insertEventToCert",
+              "scope": 12481,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_examNft",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12462,
+                        "name": "ElementaryTypeName",
+                        "src": "569:7:49"
+                      }
+                    ],
+                    "id": 12463,
+                    "name": "VariableDeclaration",
+                    "src": "569:16:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_tokenId",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12464,
+                        "name": "ElementaryTypeName",
+                        "src": "587:7:49"
+                      }
+                    ],
+                    "id": 12465,
+                    "name": "VariableDeclaration",
+                    "src": "587:16:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_action",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12466,
+                        "name": "ElementaryTypeName",
+                        "src": "605:6:49"
+                      }
+                    ],
+                    "id": 12467,
+                    "name": "VariableDeclaration",
+                    "src": "605:21:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_from",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12468,
+                        "name": "ElementaryTypeName",
+                        "src": "628:6:49"
+                      }
+                    ],
+                    "id": 12469,
+                    "name": "VariableDeclaration",
+                    "src": "628:19:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_to",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12470,
+                        "name": "ElementaryTypeName",
+                        "src": "649:6:49"
+                      }
+                    ],
+                    "id": 12471,
+                    "name": "VariableDeclaration",
+                    "src": "649:17:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_description",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12472,
+                        "name": "ElementaryTypeName",
+                        "src": "668:6:49"
+                      }
+                    ],
+                    "id": 12473,
+                    "name": "VariableDeclaration",
+                    "src": "668:26:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_date",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 12474,
+                        "name": "ElementaryTypeName",
+                        "src": "696:6:49"
+                      }
+                    ],
+                    "id": 12475,
+                    "name": "VariableDeclaration",
+                    "src": "696:19:49"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_signature",
+                      "scope": 12480,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 12476,
+                        "name": "ElementaryTypeName",
+                        "src": "717:5:49"
+                      }
+                    ],
+                    "id": 12477,
+                    "name": "VariableDeclaration",
+                    "src": "717:23:49"
+                  }
+                ],
+                "id": 12478,
+                "name": "ParameterList",
+                "src": "568:173:49"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12479,
+                "name": "ParameterList",
+                "src": "748:0:49"
+              }
+            ],
+            "id": 12480,
+            "name": "FunctionDefinition",
+            "src": "542:207:49"
+          }
+        ],
+        "id": 12481,
+        "name": "ContractDefinition",
+        "src": "25:726:49"
+      }
+    ],
+    "id": 12482,
+    "name": "SourceUnit",
+    "src": "0:752:49"
   },
-  "contractName": "ICertController",
-  "coverageMap": {
-    "branches": {},
-    "statements": {}
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
-  "dependencies": [],
-  "deployedBytecode": "",
-  "deployedSourceMap": "",
-  "language": "Solidity",
-  "natspec": {
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-11-01T14:38:10.937Z",
+  "devdoc": {
     "methods": {}
   },
-  "offset": [
-    25,
-    751
-  ],
-  "opcodes": "",
-  "pcMap": {},
-  "sha1": "c0703d66fc084184c2273cb4d2e67c86aab088da",
-  "source": "pragma solidity ^0.5.4;\n\ncontract ICertController {\n    event CertCollectionCreated (bytes32 Key, string CertName, string CertSymbol, address Creator, address CertCollectionAddress);\n\n    event CertIssued(address CertCollectionAddress, address Issuer, address Receiver);\n\n    function createCertCollection(bytes32 _key, string memory _certName, string memory _certSymbol, uint256 _salt) public returns(address);\n\n    function createCert(address _certCollection, address _user, string memory _uri, uint256 _salt) public returns(uint256);\n\n    function insertEventToCert(address _examNft, uint256 _tokenId, string memory _action, string memory _from, string memory _to, string memory _description, string memory _date, bytes memory _signature) public;\n}\n",
-  "sourceMap": "",
-  "sourcePath": "contracts/interfaces/controllers/ICert.sol",
-  "type": "contract"
+  "userdoc": {
+    "methods": {}
+  }
 }

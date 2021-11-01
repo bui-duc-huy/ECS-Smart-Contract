@@ -1,25 +1,22 @@
 {
+  "contractName": "IIdentityFactory",
   "abi": [
     {
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
           "name": "_owner",
           "type": "address"
         },
         {
-          "internalType": "bytes32[]",
           "name": "_keys",
           "type": "bytes32[]"
         },
         {
-          "internalType": "uint256[]",
           "name": "_purposes",
           "type": "uint256[]"
         },
         {
-          "internalType": "uint256",
           "name": "_salt",
           "type": "uint256"
         }
@@ -27,7 +24,6 @@
       "name": "deploy",
       "outputs": [
         {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
@@ -37,21 +33,25 @@
       "type": "function"
     }
   ],
-  "allSourcePaths": {
-    "17": "contracts/interfaces/factories/IIdentityFactory.sol"
-  },
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.4;\n\ncontract IIdentityFactory {\n    function deploy(address _owner, bytes32[] memory _keys, uint256[] memory _purposes, uint _salt) public returns(address);\n}\n",
+  "sourcePath": "/home/duchuy/Documents/bach_khoa/luan_van/ecs/ecs-smart-contracts/contracts/interfaces/factories/IIdentityFactory.sol",
   "ast": {
-    "absolutePath": "contracts/interfaces/factories/IIdentityFactory.sol",
+    "absolutePath": "project:/contracts/interfaces/factories/IIdentityFactory.sol",
     "exportedSymbols": {
       "IIdentityFactory": [
-        4324
+        12633
       ]
     },
-    "id": 4325,
+    "id": 12634,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4308,
+        "id": 12617,
         "literals": [
           "solidity",
           "^",
@@ -59,7 +59,7 @@
           ".4"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:17"
+        "src": "0:23:52"
       },
       {
         "baseContracts": [],
@@ -67,9 +67,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4324,
+        "id": 12633,
         "linearizedBaseContracts": [
-          4324
+          12633
         ],
         "name": "IIdentityFactory",
         "nodeType": "ContractDefinition",
@@ -77,23 +77,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4323,
+            "id": 12632,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deploy",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4319,
+              "id": 12628,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4310,
+                  "id": 12619,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4323,
-                  "src": "73:14:17",
+                  "scope": 12632,
+                  "src": "73:14:52",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -101,10 +101,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4309,
+                    "id": 12618,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "73:7:17",
+                    "src": "73:7:52",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -116,11 +116,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4313,
+                  "id": 12622,
                   "name": "_keys",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4323,
-                  "src": "89:22:17",
+                  "scope": 12632,
+                  "src": "89:22:52",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -129,19 +129,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4311,
+                      "id": 12620,
                       "name": "bytes32",
                       "nodeType": "ElementaryTypeName",
-                      "src": "89:7:17",
+                      "src": "89:7:52",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
                       }
                     },
-                    "id": 4312,
+                    "id": 12621,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "89:9:17",
+                    "src": "89:9:52",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
                       "typeString": "bytes32[]"
@@ -152,11 +152,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4316,
+                  "id": 12625,
                   "name": "_purposes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4323,
-                  "src": "113:26:17",
+                  "scope": 12632,
+                  "src": "113:26:52",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -165,19 +165,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4314,
+                      "id": 12623,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "113:7:17",
+                      "src": "113:7:52",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 4315,
+                    "id": 12624,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "113:9:17",
+                    "src": "113:9:52",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -188,11 +188,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4318,
+                  "id": 12627,
                   "name": "_salt",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4323,
-                  "src": "141:10:17",
+                  "scope": 12632,
+                  "src": "141:10:52",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -200,10 +200,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4317,
+                    "id": 12626,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "141:4:17",
+                    "src": "141:4:52",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -213,19 +213,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "72:80:17"
+              "src": "72:80:52"
             },
             "returnParameters": {
-              "id": 4322,
+              "id": 12631,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4321,
+                  "id": 12630,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4323,
-                  "src": "168:7:17",
+                  "scope": 12632,
+                  "src": "168:7:52",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -233,10 +233,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4320,
+                    "id": 12629,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "168:7:17",
+                    "src": "168:7:52",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -247,52 +247,273 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "167:9:17"
+              "src": "167:9:52"
             },
-            "scope": 4324,
-            "src": "57:120:17",
+            "scope": 12633,
+            "src": "57:120:52",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4325,
-        "src": "25:154:17"
+        "scope": 12634,
+        "src": "25:154:52"
       }
     ],
-    "src": "0:180:17"
+    "src": "0:180:52"
   },
-  "bytecode": "",
-  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-  "compiler": {
-    "evm_version": "istanbul",
-    "optimizer": {
-      "enabled": true,
-      "runs": 200
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/factories/IIdentityFactory.sol",
+      "exportedSymbols": {
+        "IIdentityFactory": [
+          12633
+        ]
+      }
     },
-    "version": "0.5.17+commit.d19bba13"
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".4"
+          ]
+        },
+        "id": 12617,
+        "name": "PragmaDirective",
+        "src": "0:23:52"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            12633
+          ],
+          "name": "IIdentityFactory",
+          "scope": 12634
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "deploy",
+              "scope": 12633,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_owner",
+                      "scope": 12632,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12618,
+                        "name": "ElementaryTypeName",
+                        "src": "73:7:52"
+                      }
+                    ],
+                    "id": 12619,
+                    "name": "VariableDeclaration",
+                    "src": "73:14:52"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_keys",
+                      "scope": 12632,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes32[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "bytes32[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes32",
+                              "type": "bytes32"
+                            },
+                            "id": 12620,
+                            "name": "ElementaryTypeName",
+                            "src": "89:7:52"
+                          }
+                        ],
+                        "id": 12621,
+                        "name": "ArrayTypeName",
+                        "src": "89:9:52"
+                      }
+                    ],
+                    "id": 12622,
+                    "name": "VariableDeclaration",
+                    "src": "89:22:52"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_purposes",
+                      "scope": 12632,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "uint256[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "uint256[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 12623,
+                            "name": "ElementaryTypeName",
+                            "src": "113:7:52"
+                          }
+                        ],
+                        "id": 12624,
+                        "name": "ArrayTypeName",
+                        "src": "113:9:52"
+                      }
+                    ],
+                    "id": 12625,
+                    "name": "VariableDeclaration",
+                    "src": "113:26:52"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_salt",
+                      "scope": 12632,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 12626,
+                        "name": "ElementaryTypeName",
+                        "src": "141:4:52"
+                      }
+                    ],
+                    "id": 12627,
+                    "name": "VariableDeclaration",
+                    "src": "141:10:52"
+                  }
+                ],
+                "id": 12628,
+                "name": "ParameterList",
+                "src": "72:80:52"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 12632,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 12629,
+                        "name": "ElementaryTypeName",
+                        "src": "168:7:52"
+                      }
+                    ],
+                    "id": 12630,
+                    "name": "VariableDeclaration",
+                    "src": "168:7:52"
+                  }
+                ],
+                "id": 12631,
+                "name": "ParameterList",
+                "src": "167:9:52"
+              }
+            ],
+            "id": 12632,
+            "name": "FunctionDefinition",
+            "src": "57:120:52"
+          }
+        ],
+        "id": 12633,
+        "name": "ContractDefinition",
+        "src": "25:154:52"
+      }
+    ],
+    "id": 12634,
+    "name": "SourceUnit",
+    "src": "0:180:52"
   },
-  "contractName": "IIdentityFactory",
-  "coverageMap": {
-    "branches": {},
-    "statements": {}
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
-  "dependencies": [],
-  "deployedBytecode": "",
-  "deployedSourceMap": "",
-  "language": "Solidity",
-  "natspec": {
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-11-01T14:38:10.940Z",
+  "devdoc": {
     "methods": {}
   },
-  "offset": [
-    25,
-    179
-  ],
-  "opcodes": "",
-  "pcMap": {},
-  "sha1": "cb110a4547a79168e70a2f160392b2fff2de4a5d",
-  "source": "pragma solidity ^0.5.4;\n\ncontract IIdentityFactory {\n    function deploy(address _owner, bytes32[] memory _keys, uint256[] memory _purposes, uint _salt) public returns(address);\n}\n",
-  "sourceMap": "",
-  "sourcePath": "contracts/interfaces/factories/IIdentityFactory.sol",
-  "type": "contract"
+  "userdoc": {
+    "methods": {}
+  }
 }
